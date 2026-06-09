@@ -1,12 +1,11 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
-<meta http-equiv="Pragma" content="no-cache">
-<meta http-equiv="Expires" content="0">
-<link rel="icon" type="image/png" href="logo192.png">
-
-<link rel="apple-touch-icon" href="logo192.png">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    <link rel="icon" type="image/png" href="logo192.png">
+    <link rel="apple-touch-icon" href="logo192.png">
     <link rel="manifest" href="/manifest.json">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
@@ -14,13 +13,13 @@
     <link href="https://fonts.googleapis.com/css2?family=Rubik+Glitch&family=Michroma&family=Teko:wght@700&family=Source+Code+Pro:wght@400;900&display=swap" rel="stylesheet">
     <style>
         .elemento {
-  background-image: url('fondo.png');
-}
+            background-image: url('fondo.png');
+        }
 
-.insta-tag {
-    bottom: 90px !important; 
-    background: #e1306c !important; 
-}
+        .insta-tag {
+            bottom: 90px !important; 
+            background: #e1306c !important; 
+        }
         :root {
             --bg: #0a1118;         /* Fondo oscuro azulado profundo */
             --celeste: #74acdf;    /* El celeste oficial de la selección */
@@ -36,22 +35,21 @@
         * { box-sizing: border-box; }
 
         body {
-    background-color: var(--bg);
-    /* Mezclamos una capa oscura transparente para que el texto siga siendo legible y la imagen de fondo abajo */
-    background-image: 
-        linear-gradient(rgba(10, 17, 24, 0.85), rgba(10, 17, 24, 0.85)), 
-        url('fondo.png'); 
-    background-size: cover;         /* Hace que la imagen cubra toda la pantalla */
-    background-position: center;    /* Centra la imagen */
-    background-attachment: fixed;  /* El fondo se queda quieto al scrollear (efecto pro) */
-    background-repeat: no-repeat;
-    color: var(--text);
-    font-family: var(--font-code);
-    margin: 0;
-    text-transform: uppercase;
-    overflow-x: hidden;
-    width: 100%;
-}
+            background-color: var(--bg);
+            background-image: 
+                linear-gradient(rgba(10, 17, 24, 0.85), rgba(10, 17, 24, 0.85)), 
+                url('fondo.png'); 
+            background-size: cover;         
+            background-position: center;    
+            background-attachment: fixed;  
+            background-repeat: no-repeat;
+            color: var(--text);
+            font-family: var(--font-code);
+            margin: 0;
+            text-transform: uppercase;
+            overflow-x: hidden;
+            width: 100%;
+        }
 
         body::before {
             content: " ";
@@ -78,37 +76,33 @@
             z-index: 5;
             animation: glitch-img 4s infinite;
         }
-        /* Nuevo: Contenedor que centra el bloque por completo */
-.logo-container {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 15px 0;
-    z-index: 5;
-}
 
-/* Nuevo: Controla el tamaño promedio y mantiene la proporción */
-.tournament-logo {
-    width: 5000px;          /* El tamaño promedio ideal para cabeceras */
-    height: auto;          /* Mantiene la proporción original sin deformar */
-    max-width: 65%;        /* Evita que desborde en celulares muy chicos */
-    filter: drop-shadow(0 0 15px var(--celeste)); /* Tu brillo celeste característico */
-    
-    /* Si querés que el logo también use la animación glitch sutil de la web: */
-    animation: glitch-img 4s infinite; 
-}
+        .logo-container {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 15px 0;
+            z-index: 5;
+        }
 
-/* Ajuste responsive para pantallas chicas */
-@media (max-width: 768px) {
-    .tournament-logo {
-        width: 135px;      /* Se adapta un toque más chico en celulares para no romper el layout */
-    }
-}
+        .tournament-logo {
+            width: 5000px;          
+            height: auto;          
+            max-width: 65%;        
+            filter: drop-shadow(0 0 15px var(--celeste)); 
+            animation: glitch-img 4s infinite; 
+        }
+
+        @media (max-width: 768px) {
+            .tournament-logo {
+                width: 135px;      
+            }
+        }
 
         @keyframes glitch-img {
             0% { transform: translate(0); }
-            1% { transform: translate(-2px, 1px); filter: hue-rotate(180deg); } /* Ajustado para el mood azul/celeste */
+            1% { transform: translate(-2px, 1px); filter: hue-rotate(180deg); } 
             2% { transform: translate(2px, -1px); filter: brightness(1.5); }
             3% { transform: translate(0); filter: none; }
         }
@@ -451,12 +445,6 @@
     </script>
 
     <script>
-      // 1. Abre el widget si venimos con el token de invitacion en la URL
-      if (window.location.hash.includes("invite_token") || window.location.hash.includes("recovery_token") || window.location.hash.includes("access_token")) {
-        window.netlifyIdentity.open();
-      }
-
-      // 2. Maneja el estado del Login y manda al usuario a la ruta admin
       if (window.netlifyIdentity) {
         window.netlifyIdentity.on("init", user => {
           if (!user) {
@@ -465,12 +453,14 @@
             });
           }
         });
-
         window.netlifyIdentity.on("login", () => {
           document.location.href = "/admin/";
         });
       }
-    </script>
 
+      if (window.location.hash.includes("invite_token") || window.location.hash.includes("recovery_token") || window.location.hash.includes("access_token")) {
+        window.netlifyIdentity.open();
+      }
+    </script>
 </body>
 </html>
