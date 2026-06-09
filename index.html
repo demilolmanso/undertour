@@ -411,14 +411,20 @@
             document.getElementById("secs").innerHTML = Math.floor((distance % (1000 * 60)) / 1000).toString().padStart(2, '0');
         }, 1000);
     </script>
-    <script>
+   <script>
   if (window.netlifyIdentity) {
+    // Inicializa el widget de Netlify Identity
     window.netlifyIdentity.on("init", user => {
       if (!user) {
         window.netlifyIdentity.on("login", () => {
           document.location.href = "/admin/";
         });
       }
+    });
+
+    // ¡ESTO ES LO QUE FALTA! Atrapa al usuario cuando confirma el mail
+    window.netlifyIdentity.on("login", (user) => {
+      document.location.href = "/admin/";
     });
   }
 </script>
