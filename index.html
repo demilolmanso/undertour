@@ -78,6 +78,33 @@
             z-index: 5;
             animation: glitch-img 4s infinite;
         }
+        /* Nuevo: Contenedor que centra el bloque por completo */
+.logo-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 15px 0;
+    z-index: 5;
+}
+
+/* Nuevo: Controla el tamaño promedio y mantiene la proporción */
+.tournament-logo {
+    width: 180px;          /* El tamaño promedio ideal para cabeceras */
+    height: auto;          /* Mantiene la proporción original sin deformar */
+    max-width: 65%;        /* Evita que desborde en celulares muy chicos */
+    filter: drop-shadow(0 0 15px var(--celeste)); /* Tu brillo celeste característico */
+    
+    /* Si querés que el logo también use la animación glitch sutil de la web: */
+    animation: glitch-img 4s infinite; 
+}
+
+/* Ajuste responsive para pantallas chicas */
+@media (max-width: 768px) {
+    .tournament-logo {
+        width: 135px;      /* Se adapta un toque más chico en celulares para no romper el layout */
+    }
+}
 
         @keyframes glitch-img {
             0% { transform: translate(0); }
