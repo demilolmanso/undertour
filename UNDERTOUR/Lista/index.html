@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UT | TRANSMISIONES_DE_LA_BRECHA</title>
+    <link href="https://fonts.googleapis.com/css2?family=Rubik+Glitch&family=Source+Code+Pro:wght@400;900&display=swap" rel="stylesheet">
+    <style>
+        /* Acá podés pegar los mismos estilos de tu CSS original */
+        body {
+            background-color: #000;
+            color: #fff;
+            font-family: 'Source Code Pro', monospace;
+            padding: 40px 20px;
+        }
+        .blog-header { text-align: center; font-family: 'Rubik Glitch'; color: #7012b3; font-size: 2.5rem; }
+        .post-card {
+            border: 1px solid #7012b3;
+            background: rgba(5,5,5,0.9);
+            padding: 20px;
+            margin: 20px auto;
+            max-width: 600px;
+            box-shadow: 4px 4px 0 #82c91e;
+        }
+        .post-card h2 { color: #82c91e; margin-top: 0; }
+        .post-card a { color: #fff; text-decoration: none; font-weight: bold; display: inline-block; margin-top: 10px; border: 1px solid #82c91e; padding: 5px 10px;}
+    </style>
+</head>
+<body>
+
+    <h1 class="blog-header">NODO_BLOG_INFILTRADO</h1>
+    <div id="blog-posts-container">
+        </div>
+
+    <script>
+        // Lista manual de tus posts (Decap no genera un índice automático en JS nativo,
+        // por lo que cada vez que crees uno nuevo en el CMS, agregás el nombre del archivo acá)
+        const posts = [
+            'primer-comunicado' // Si tu post en el CMS se guardó como primer-comunicado.json
+        ];
+
+        const container = document.getElementById('blog-posts-container');
+
+        async function loadPosts() {
+            if(posts.length === 0) {
+                container.innerHTML = '<p style="text-align:center;">NO SE ENCONTRARON TRANSMISIONES ACTIVAS...</p>';
+                return;
+            }
+
+            for (const slug of posts) {
+                try {
+                    const response = await fetch(`/blog/posts/${slug}.json`);
+                    const data = await response.json();
+                    
+                    const postElement = document.createElement('article');
+                    postElement.className = 'post-card';
+                    postElement.innerHTML = `
+                        <h2>${data.title}</h2>
+                        <small style="color: #444;">FECHA: ${new Date(data.date).toLocaleDateString()}</small>
+                        <p>${data.description}</p>
+                        <a href="/blog/post.html?id=${slug}">LEER_TRANSMISION_></a>
+                    `;
+                    container.appendChild(postElement);
+                } catch (error) {
+                    console.error("Error cargando el post:", error);
+                }
+            }
+        }
+
+        loadPosts();
+    </script>
+</body>
+</html>

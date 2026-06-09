@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UT | LEYENDO_TRANSMISION</title>
+    <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@400;900&display=swap" rel="stylesheet">
+    <style>
+        body { background-color: #000; color: #fff; font-family: 'Source Code Pro', monospace; padding: 40px 20px; }
+        .post-container { max-width: 700px; margin: 0 auto; border: 1px solid #82c91e; padding: 30px; background: #050505;}
+        h1 { color: #82c91e; }
+        .content { line-height: 1.6; margin-top: 20px; }
+        .back-btn { color: #7012b3; text-decoration: none; display: block; margin-bottom: 20px; }
+    </style>
+</head>
+<body>
+
+    <div class="post-container">
+        <a href="/blog/" class="back-btn"><_VOLVER_AL_NODO</a>
+        <h1 id="post-title">CARGANDO...</h1>
+        <div id="post-content" class="content"></div>
+    </div>
+
+    <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        const postId = urlParams.get('id');
+
+        async function loadSinglePost() {
+            if (!postId) {
+                document.getElementById('post-title').innerText = "ERROR_404_NODO_NO_ENCONTRADO";
+                return;
+            }
+
+            try {
+                const response = await fetch(`/blog/posts/${postId}.json`);
+                const data = await response.json();
+
+                document.title = `UT | ${data.title}`;
+                document.getElementById('post-title').innerText = data.title;
+                
+                // Decap guarda el body en Markdown. Para algo ultra simple, reemplazamos saltos de línea por <br>
+                // Si vas a meter mucho formato, lo ideal sería sumar una librería como 'marked.js'
+                document.getElementById('post-content').innerHTML = data.body.replace(/\n/g, '<br>');
+                
+            } catch (error) {
+                document.getElementById('post-title').innerText = "ERROR_DE_CONEXION_SISTEMA";
+            }
+        }
+
+        loadSinglePost();
+    </script>
+</body>
+</html>
