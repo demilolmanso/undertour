@@ -4,15 +4,13 @@
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
-<!-- Icono estándar para la pestaña -->
 <link rel="icon" type="image/png" href="logo192.png">
 
-<!-- Icono para iPhone/iOS -->
 <link rel="apple-touch-icon" href="logo192.png">
     <link rel="manifest" href="/manifest.json">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>UT | BRECHA_25_MAYO</title>
+    <title>UT | BRECHA_MUNDIAL</title>
     <link href="https://fonts.googleapis.com/css2?family=Rubik+Glitch&family=Michroma&family=Teko:wght@700&family=Source+Code+Pro:wght@400;900&display=swap" rel="stylesheet">
     <style>
 
@@ -21,10 +19,10 @@
     background: #e1306c !important; 
 }
         :root {
-            --bg: #000000;
-            --green: #82c91e;   
-            --purple: #7012b3;  
-            --alert: #ff003c;
+            --bg: #0a1118;         /* Fondo oscuro azulado profundo */
+            --celeste: #74acdf;    /* El celeste oficial de la selección */
+            --blanco: #ffffff;     /* Blanco puro para contrastes masivos */
+            --dorado: #f1c40f;     /* Oro para los destaques de campeón */
             --text: #ffffff;
             --font-glitch: 'Rubik Glitch', system-ui;
             --font-tech: 'Michroma', sans-serif;
@@ -37,8 +35,8 @@
         body {
             background-color: var(--bg);
             background-image: 
-                linear-gradient(rgba(0,0,0,0.9), rgba(0,0,0,0.9)),
-                url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="150" height="150" viewBox="0 0 150 150"><text x="0" y="20" fill="rgba(112,18,179,0.1)" font-family="monospace" font-size="10">LOG_ERROR_UT_SYSTEM_INFILTRATED</text></svg>'),
+                linear-gradient(rgba(10, 17, 24, 0.95), rgba(10, 17, 24, 0.95)),
+                url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="150" height="150" viewBox="0 0 150 150"><text x="0" y="20" fill="rgba(116,172,223,0.07)" font-family="monospace" font-size="10">FIEBRE_MUNDIAL_UT_SYSTEM_INFILTRATED</text></svg>'),
                 url('https://www.transparenttextures.com/patterns/asfalt-dark.png');
             color: var(--text);
             font-family: var(--font-code);
@@ -52,7 +50,7 @@
             content: " ";
             position: fixed;
             top: 0; left: 0; bottom: 0; right: 0;
-            background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.2) 50%);
+            background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.35) 50%);
             z-index: 9998;
             background-size: 100% 2px;
             pointer-events: none;
@@ -69,15 +67,15 @@
         .main-logo {
             width: 300px; 
             max-width: 80%;
-            filter: drop-shadow(0 0 15px var(--purple));
+            filter: drop-shadow(0 0 15px var(--celeste));
             z-index: 5;
             animation: glitch-img 4s infinite;
         }
 
         @keyframes glitch-img {
             0% { transform: translate(0); }
-            1% { transform: translate(-2px, 1px); filter: hue-rotate(45deg); }
-            2% { transform: translate(2px, -1px); filter: hue-rotate(90deg); }
+            1% { transform: translate(-2px, 1px); filter: hue-rotate(180deg); } /* Ajustado para el mood azul/celeste */
+            2% { transform: translate(2px, -1px); filter: brightness(1.5); }
             3% { transform: translate(0); filter: none; }
         }
 
@@ -85,8 +83,8 @@
             font-family: var(--font-glitch);
             font-size: 12rem;
             line-height: 0.7;
-            color: #000;
-            text-shadow: 2px 2px 0 var(--purple), -2px -2px 0 var(--green);
+            color: #0a1118;
+            text-shadow: 3px 3px 0 var(--celeste), -3px -3px 0 var(--blanco);
             margin: -10px 0 30px 0;
             transform: rotate(-3deg);
             z-index: 10;
@@ -102,21 +100,21 @@
 
         .cd-box {
             background: rgba(0,0,0,0.8);
-            border: 1px solid var(--purple);
+            border: 1px solid var(--celeste);
             padding: 15px;
             min-width: 75px;
-            box-shadow: 4px 4px 0 var(--green);
+            box-shadow: 4px 4px 0 var(--blanco);
         }
 
         .cd-box span {
             display: block;
             font-family: var(--font-heavy);
             font-size: 2.8rem;
-            color: var(--green);
+            color: var(--blanco);
             line-height: 1;
         }
 
-        .cd-box label { font-size: 0.6rem; color: var(--purple); font-weight: 900; }
+        .cd-box label { font-size: 0.6rem; color: var(--celeste); font-weight: 900; }
 
         .container {
             max-width: 900px;
@@ -133,29 +131,29 @@
         }
 
         .status-box {
-            border: 1px solid #222;
-            background: rgba(5,5,5,0.9);
+            border: 1px solid #1a2635;
+            background: rgba(5,10,15,0.9);
             padding: 20px;
             text-align: center;
         }
 
-        .status-box h3 { font-family: var(--font-glitch); font-size: 0.9rem; color: var(--purple); margin-top: 0; }
+        .status-box h3 { font-family: var(--font-glitch); font-size: 0.9rem; color: var(--celeste); margin-top: 0; }
 
         .prize-card {
             grid-column: span 2;
-            border: 2px solid var(--purple);
+            border: 2px solid var(--celeste);
             padding: 30px;
             text-align: center;
-            background: #050505;
+            background: #050a0f;
             position: relative;
             margin: 20px 0;
             overflow: hidden;
         }
 
         .prize-card::before {
-            content: "EL BOTÍN";
+            content: "EL BOTÍN SELECCIÓN";
             position: absolute; top: 0; left: 0;
-            background: var(--green); color: black;
+            background: var(--celeste); color: black;
             padding: 5px 15px; font-family: var(--font-heavy); font-size: 1.2rem;
         }
 
@@ -163,14 +161,14 @@
             width: 100%;
             max-width: 450px;
             height: auto;
-            filter: drop-shadow(0 0 10px rgba(112, 18, 179, 0.4));
+            filter: drop-shadow(0 0 15px rgba(116, 172, 223, 0.4));
             margin: 10px 0;
         }
 
         .location-lock {
             grid-column: span 2;
-            background: rgba(112, 18, 179, 0.1);
-            border: 1px dashed var(--purple);
+            background: rgba(116, 172, 223, 0.05);
+            border: 1px dashed var(--celeste);
             padding: 25px;
             text-align: center;
             margin: 10px 0;
@@ -179,46 +177,56 @@
 
         .location-lock h3 {
             font-family: var(--font-glitch);
-            color: var(--alert);
+            color: var(--dorado);
             margin: 0 0 10px 0;
         }
 
         .glitch-text {
             font-size: 1.2rem;
             letter-spacing: 5px;
-            color: #333;
+            color: #4a5e75;
             animation: noise 2s infinite;
         }
 
         @keyframes noise {
             0% { transform: translateX(0); }
-            10% { transform: translateX(-2px); color: var(--green); }
-            20% { transform: translateX(2px); color: var(--purple); }
+            10% { transform: translateX(-2px); color: var(--blanco); }
+            20% { transform: translateX(2px); color: var(--celeste); }
             30% { transform: translateX(0); }
         }
 
         .brecha-form {
             grid-column: span 2;
-            border: 2px solid var(--green);
+            border: 2px solid var(--celeste);
             padding: 40px;
             margin-top: 20px;
-            background: #000;
+            background: #050a0f;
+            box-shadow: 0 0 15px rgba(116, 172, 223, 0.1);
         }
 
         .field { margin-bottom: 20px; text-align: left; }
-        .field label { display: block; color: var(--purple); font-size: 0.7rem; margin-bottom: 5px; }
+        .field label { display: block; color: var(--celeste); font-size: 0.7rem; margin-bottom: 5px; letter-spacing: 1px; }
         .field input, .field textarea {
-            width: 100%; background: #0a0a0a; border: 1px solid #333;
-            color: var(--green); padding: 12px; font-family: var(--font-code);
+            width: 100%; background: #0a1118; border: 1px solid #1a2635;
+            color: var(--blanco); padding: 12px; font-family: var(--font-code);
             box-sizing: border-box;
             font-size: 16px; 
+            border-bottom: 2px solid var(--celeste);
         }
 
-        .field textarea { height: 100px; resize: none; border-left: 3px solid var(--purple); }
+        .field textarea { height: 100px; resize: none; border-left: 3px solid var(--blanco); }
 
         .inject-btn {
-            background: var(--green); color: #000; border: none; padding: 20px;
+            background: var(--celeste); color: #000; border: none; padding: 20px;
             width: 100%; font-family: var(--font-heavy); font-size: 2rem; cursor: pointer;
+            transition: all 0.3s ease;
+            text-shadow: 1px 1px 0 rgba(255,255,255,0.5);
+            box-shadow: 4px 4px 0 var(--blanco);
+        }
+
+        .inject-btn:hover {
+            background: var(--blanco);
+            box-shadow: 4px 4px 0 var(--celeste);
         }
 
         .intercept-msg {
@@ -226,7 +234,7 @@
             text-align: center;
             margin-top: 15px;
             font-size: 0.75rem;
-            color: var(--purple);
+            color: var(--celeste);
             letter-spacing: 2px;
             animation: blink-msg 2s infinite;
         }
@@ -239,7 +247,7 @@
         .contingency-note {
             text-align: center;
             font-size: 0.65rem;
-            color: #444;
+            color: #566f8a;
             padding: 0 20px;
             margin-top: 50px;
             font-family: var(--font-code);
@@ -247,15 +255,15 @@
         }
 
         .live-tag {
-            position: fixed; bottom: 30px; right: 30px; background: var(--alert);
+            position: fixed; bottom: 30px; right: 30px; background: #000000;
             color: white; padding: 12px 20px; text-decoration: none;
-            font-family: var(--font-heavy); border: 2px solid white; z-index: 1000;
+            font-family: var(--font-heavy); border: 2px solid var(--celeste); z-index: 1000;
             animation: blink 1s infinite;
         }
 
-        @keyframes blink { 50% { opacity: 0.6; } }
+        @keyframes blink { 50% { opacity: 0.7; } }
 
-        footer { text-align: center; padding: 20px 40px 40px 40px; font-size: 0.6rem; color: #222; letter-spacing: 5px; }
+        footer { text-align: center; padding: 20px 40px 40px 40px; font-size: 0.6rem; color: #1a2635; letter-spacing: 5px; }
 
         @media (max-width: 768px) {
             .grid-system { grid-template-columns: 1fr; }
@@ -267,23 +275,23 @@
             .brecha-form { padding: 25px 15px; }
             .live-tag { bottom: 15px; right: 15px; padding: 8px 15px; font-size: 0.8rem; }
         }
+        
         .tiktok-tag {
-    bottom: 150px !important; 
-    background: #010101 !important; /* Negro característico de TikTok */
-    border-color: #00f2fe !important; /* Borde cian/azul neón */
-    box-shadow: 2px 2px 0 #fe0979; /* Sombra rosa neón para el efecto glitch */
-}
+            bottom: 150px !important; 
+            background: #010101 !important; 
+            border-color: #00f2fe !important; 
+            box-shadow: 2px 2px 0 #fe0979; 
+        }
 
-.fb-tag {
-    bottom: 210px !important; 
-    background: #1877f2 !important; /* Azul de Facebook */
-}
+        .fb-tag {
+            bottom: 210px !important; 
+            background: #1877f2 !important; 
+        }
 
-/* Ajustes responsivos para que en celulares no tapen toda la pantalla */
-@media (max-width: 768px) {
-    .tiktok-tag { bottom: 115px !important; }
-    .fb-tag { bottom: 165px !important; }
-}
+        @media (max-width: 768px) {
+            .tiktok-tag { bottom: 115px !important; }
+            .fb-tag { bottom: 165px !important; }
+        }
     </style>
 </head>
 
@@ -307,7 +315,7 @@
             <div class="cd-box"><span id="days">00</span><label>DÍAS</label></div>
             <div class="cd-box"><span id="hours">00</span><label>HORAS</label></div>
             <div class="cd-box"><span id="mins">00</span><label>MINS</label></div>
-            <div class="cd-box" style="border-color: var(--green);"><span id="secs" style="color: var(--purple);">00</span><label>SECS</label></div>
+            <div class="cd-box" style="border-color: var(--blanco);"><span id="secs" style="color: var(--celeste);">00</span><label>SECS</label></div>
         </div>
     </header>
 
@@ -315,28 +323,28 @@
         <div class="grid-system">
             <div class="status-box">
                 <h3>SQUADS_DISPONIBLES</h3>
-                <div style="font-family: var(--font-glitch); font-size: 3.5rem;">90</div>
+                <div style="font-family: var(--font-glitch); font-size: 3.5rem; color: var(--celeste);">90</div>
             </div>
 
-            <div class="status-box" style="border-color: var(--purple);">
+            <div class="status-box" style="border-color: var(--celeste);">
                 <h3>ENTRY_FEE</h3>
-                <div style="font-family: var(--font-heavy); font-size: 2.5rem; color: var(--green);">$50.000</div>
-                <label style="font-size: 0.6rem;">PESOS_ARGENTINOS</label>
+                <div style="font-family: var(--font-heavy); font-size: 2.5rem; color: var(--dorado);">$50.000</div>
+                <label style="font-size: 0.6rem; color: var(--blanco);">PESOS_ARGENTINOS</label>
             </div>
 
             <section class="prize-card">
                 <img src="https://i.postimg.cc/k5kFVzcW/D-NQ-NP-2X-881013-MLA47766242662-102021-F-compress-compress-removebg-preview.png" alt="Mondial Dax" class="dax-img">
-                <h2 style="font-family: var(--font-glitch); color: var(--text); margin: 0;">MONDIAL DAX 70 BLACK</h2>
+                <h2 style="font-family: var(--font-glitch); color: var(--text); margin: 0; letter-spacing: 2px;">MONDIAL DAX 70 BLACK</h2>
             </section>
 
             <section class="location-lock">
                 <h3>COORDENADAS_BLOQUEADAS</h3>
                 <div class="glitch-text">38.12XX° S / 57.6XXX° W</div>
-                <p style="font-size: 0.6rem; color: var(--purple); margin-top: 10px;">DESCIFRANDO NODO CHAPADMALAL... ACCESO EN 24HS PRE-EVENTO</p>
+                <p style="font-size: 0.6rem; color: var(--celeste); margin-top: 10px;">DESCIFRANDO NODO CHAPADMALAL... ACCESO EN 24HS PRE-EVENTO</p>
             </section>
 
             <section class="brecha-form">
-                <h2 style="font-family: var(--font-glitch); color: var(--green); text-align: center; margin-top: 0;">SE ABRIÓ UNA BRECHA</h2>
+                <h2 style="font-family: var(--font-glitch); color: var(--celeste); text-align: center; margin-top: 0;">SE ABRIÓ LA BRECHA</h2>
                 <form action="https://formspree.io/f/xvzlrozv" method="POST">
                     <div class="field">
                         <label>SQUAD_ID</label>
@@ -360,36 +368,32 @@
                     </div>
                     
                     <button type="submit" class="inject-btn">INYECTAR_DATOS_SQUAD</button>
-                    <span class="intercept-msg">NO NOS BUSQUES, NOSOTROS TE INTERCEPTAMOS</span>
+                    <span class="intercept-msg" style="color: var(--dorado);">LA PATRIA O EL TABLÓN. NOS VEMOS EN LA CANCHA.</span>
                 </form>
             </section>
         </div>
     </div>
 
     <p class="contingency-note">
-        
-(EL TORNEO NO INICIARÁ HASTA NO CUBRIR TODOS LOS LUGARES. EN CASO DE NO COMPLETAR EL CUPO PARA LA FECHA ESTIPULADA, SE PROGRAMARÁ UNA NUEVA FECHA DE APERTURA)
-WEB POR DEMIÁN CEPEDA.
+        (EL TORNEO NO INICIARÁ HASTA NO CUBRIR TODOS LOS LUGARES. EN CASO DE NO COMPLETAR EL CUPO PARA LA FECHA ESTIPULADA, SE PROGRAMARÁ UNA NUEVA FECHA DE APERTURA)
+        WEB POR DEMIÁN CEPEDA.
     </p>
 
     <a href="https://www.youtube.com/@UnderTourChannel" target="_blank" class="live-tag">
         ● UT en Youtube
     </a>
-<a href="https://www.instagram.com/undertourhere/" target="_blank" class="live-tag insta-tag">
-    ● UT en Instagram
-</a>
-<a href="https://www.facebook.com/share/18yig4K5zS/" target="_blank" class="live-tag fb-tag">
-        ● UT en Facebook
-    </a>
-
-    <a href="https://www.tiktok.com/@undergroundtourna?_r=1&_t=ZS-96vxB1xpMZ8" target="_blank" class="live-tag tiktok-tag">
-        ● UT en TikTok
-    </a>
-
     <a href="https://www.instagram.com/undertourhere/" target="_blank" class="live-tag insta-tag">
         ● UT en Instagram
     </a>
-
+    <a href="https://www.facebook.com/share/18yig4K5zS/" target="_blank" class="live-tag fb-tag">
+        ● UT en Facebook
+    </a>
+    <a href="https://www.tiktok.com/@undergroundtourna?_r=1&_t=ZS-96vxB1xpMZ8" target="_blank" class="live-tag tiktok-tag">
+        ● UT en TikTok
+    </a>
+    <a href="https://www.instagram.com/undertourhere/" target="_blank" class="live-tag insta-tag">
+        ● UT en Instagram
+    </a>
     <a href="https://www.youtube.com/@UnderTourChannel" target="_blank" class="live-tag">
         ● UT en YouTube
     </a>
