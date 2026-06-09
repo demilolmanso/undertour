@@ -1,31 +1,35 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
-<meta http-equiv="Pragma" content="no-cache">
-<meta http-equiv="Expires" content="0">
-<link rel="icon" type="image/png" href="logo192.png">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    <link rel="icon" type="image/png" href="logo192.png">
 
-<link rel="apple-touch-icon" href="logo192.png">
+    <link rel="apple-touch-icon" href="logo192.png">
     <link rel="manifest" href="/manifest.json">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>UT | BRECHA_MUNDIAL</title>
     <link href="https://fonts.googleapis.com/css2?family=Rubik+Glitch&family=Michroma&family=Teko:wght@700&family=Source+Code+Pro:wght@400;900&display=swap" rel="stylesheet">
+    
+    <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+
     <style>
         .elemento {
-  background-image: url('fondo.png');
-}
+            background-image: url('fondo.png');
+        }
 
-.insta-tag {
-    bottom: 90px !important; 
-    background: #e1306c !important; 
-}
+        .insta-tag {
+            bottom: 90px !important; 
+            background: #e1306c !important; 
+        }
         :root {
             --bg: #0a1118;         /* Fondo oscuro azulado profundo */
-            --celeste: #74acdf;    /* El celeste oficial de la selección */
-            --blanco: #ffffff;     /* Blanco puro para contrastes masivos */
-            --dorado: #f1c40f;     /* Oro para los destaques de campeón */
+            --celeste: #74acdf;    /* Celeste de la bandera */
+            --blanco: #ffffff;     /* Blanco de la bandera */
+            --oro: #f6b426;        /* Oro del sol de mayo */
+            --alert: #ff003c;
             --text: #ffffff;
             --font-glitch: 'Rubik Glitch', system-ui;
             --font-tech: 'Michroma', sans-serif;
@@ -36,28 +40,24 @@
         * { box-sizing: border-box; }
 
         body {
-    background-color: var(--bg);
-    /* Mezclamos una capa oscura transparente para que el texto siga siendo legible y la imagen de fondo abajo */
-    background-image: 
-        linear-gradient(rgba(10, 17, 24, 0.85), rgba(10, 17, 24, 0.85)), 
-        url('fondo.png'); 
-    background-size: cover;         /* Hace que la imagen cubra toda la pantalla */
-    background-position: center;    /* Centra la imagen */
-    background-attachment: fixed;  /* El fondo se queda quieto al scrollear (efecto pro) */
-    background-repeat: no-repeat;
-    color: var(--text);
-    font-family: var(--font-code);
-    margin: 0;
-    text-transform: uppercase;
-    overflow-x: hidden;
-    width: 100%;
-}
+            background-color: var(--bg);
+            background-image: 
+                linear-gradient(rgba(10,17,24,0.85), rgba(10,17,24,0.85)),
+                url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="150" height="150" viewBox="0 0 150 150"><text x="0" y="20" fill="rgba(116,172,223,0.07)" font-family="monospace" font-size="10">ARG_NODO_UT_SYSTEM_BRECHA</text></svg>'),
+                url('https://www.transparenttextures.com/patterns/asfalt-dark.png');
+            color: var(--text);
+            font-family: var(--font-code);
+            margin: 0;
+            text-transform: uppercase;
+            overflow-x: hidden;
+            width: 100%;
+        }
 
         body::before {
             content: " ";
             position: fixed;
             top: 0; left: 0; bottom: 0; right: 0;
-            background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.35) 50%);
+            background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%);
             z-index: 9998;
             background-size: 100% 2px;
             pointer-events: none;
@@ -78,38 +78,11 @@
             z-index: 5;
             animation: glitch-img 4s infinite;
         }
-        /* Nuevo: Contenedor que centra el bloque por completo */
-.logo-container {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 15px 0;
-    z-index: 5;
-}
-
-/* Nuevo: Controla el tamaño promedio y mantiene la proporción */
-.tournament-logo {
-    width: 5000px;          /* El tamaño promedio ideal para cabeceras */
-    height: auto;          /* Mantiene la proporción original sin deformar */
-    max-width: 65%;        /* Evita que desborde en celulares muy chicos */
-    filter: drop-shadow(0 0 15px var(--celeste)); /* Tu brillo celeste característico */
-    
-    /* Si querés que el logo también use la animación glitch sutil de la web: */
-    animation: glitch-img 4s infinite; 
-}
-
-/* Ajuste responsive para pantallas chicas */
-@media (max-width: 768px) {
-    .tournament-logo {
-        width: 135px;      /* Se adapta un toque más chico en celulares para no romper el layout */
-    }
-}
 
         @keyframes glitch-img {
             0% { transform: translate(0); }
-            1% { transform: translate(-2px, 1px); filter: hue-rotate(180deg); } /* Ajustado para el mood azul/celeste */
-            2% { transform: translate(2px, -1px); filter: brightness(1.5); }
+            1% { transform: translate(-2px, 1px); filter: hue-rotate(20deg); }
+            2% { transform: translate(2px, -1px); filter: hue-rotate(-20deg); }
             3% { transform: translate(0); filter: none; }
         }
 
@@ -117,8 +90,8 @@
             font-family: var(--font-glitch);
             font-size: 12rem;
             line-height: 0.7;
-            color: #0a1118;
-            text-shadow: 3px 3px 0 var(--celeste), -3px -3px 0 var(--blanco);
+            color: #000;
+            text-shadow: 2px 2px 0 var(--celeste), -2px -2px 0 var(--oro);
             margin: -10px 0 30px 0;
             transform: rotate(-3deg);
             z-index: 10;
@@ -133,11 +106,11 @@
         }
 
         .cd-box {
-            background: rgba(0,0,0,0.8);
+            background: rgba(10,17,24,0.9);
             border: 1px solid var(--celeste);
             padding: 15px;
             min-width: 75px;
-            box-shadow: 4px 4px 0 var(--blanco);
+            box-shadow: 4px 4px 0 var(--oro);
         }
 
         .cd-box span {
@@ -146,6 +119,7 @@
             font-size: 2.8rem;
             color: var(--blanco);
             line-height: 1;
+            text-shadow: 0 0 5px var(--celeste);
         }
 
         .cd-box label { font-size: 0.6rem; color: var(--celeste); font-weight: 900; }
@@ -165,10 +139,11 @@
         }
 
         .status-box {
-            border: 1px solid #1a2635;
+            border: 1px solid #1a2634;
             background: rgba(5,10,15,0.9);
             padding: 20px;
             text-align: center;
+            box-shadow: inset 0 0 10px rgba(116,172,223,0.1);
         }
 
         .status-box h3 { font-family: var(--font-glitch); font-size: 0.9rem; color: var(--celeste); margin-top: 0; }
@@ -182,317 +157,25 @@
             position: relative;
             margin: 20px 0;
             overflow: hidden;
+            box-shadow: 0 0 15px rgba(116,172,223,0.1);
         }
 
         .prize-card::before {
-            content: "EL BOTÍN SELECCIÓN";
+            content: "EL BOTÍN MUNDIAL";
             position: absolute; top: 0; left: 0;
-            background: var(--celeste); color: black;
+            background: var(--oro); color: black;
             padding: 5px 15px; font-family: var(--font-heavy); font-size: 1.2rem;
+            font-weight: bold;
         }
 
         .dax-img {
             width: 100%;
             max-width: 450px;
             height: auto;
-            filter: drop-shadow(0 0 15px rgba(116, 172, 223, 0.4));
+            filter: drop-shadow(0 0 15px rgba(116, 172, 223, 0.3));
             margin: 10px 0;
         }
 
         .location-lock {
             grid-column: span 2;
-            background: rgba(116, 172, 223, 0.05);
-            border: 1px dashed var(--celeste);
-            padding: 25px;
-            text-align: center;
-            margin: 10px 0;
-            position: relative;
-        }
-
-        .location-lock h3 {
-            font-family: var(--font-glitch);
-            color: var(--dorado);
-            margin: 0 0 10px 0;
-        }
-
-        .glitch-text {
-            font-size: 1.2rem;
-            letter-spacing: 5px;
-            color: #4a5e75;
-            animation: noise 2s infinite;
-        }
-
-        @keyframes noise {
-            0% { transform: translateX(0); }
-            10% { transform: translateX(-2px); color: var(--blanco); }
-            20% { transform: translateX(2px); color: var(--celeste); }
-            30% { transform: translateX(0); }
-        }
-
-        .brecha-form {
-            grid-column: span 2;
-            border: 2px solid var(--celeste);
-            padding: 40px;
-            margin-top: 20px;
-            background: #050a0f;
-            box-shadow: 0 0 15px rgba(116, 172, 223, 0.1);
-        }
-
-        .field { margin-bottom: 20px; text-align: left; }
-        .field label { display: block; color: var(--celeste); font-size: 0.7rem; margin-bottom: 5px; letter-spacing: 1px; }
-        .field input, .field textarea {
-            width: 100%; background: #0a1118; border: 1px solid #1a2635;
-            color: var(--blanco); padding: 12px; font-family: var(--font-code);
-            box-sizing: border-box;
-            font-size: 16px; 
-            border-bottom: 2px solid var(--celeste);
-        }
-
-        .field textarea { height: 100px; resize: none; border-left: 3px solid var(--blanco); }
-
-        .inject-btn {
-            background: var(--celeste); color: #000; border: none; padding: 20px;
-            width: 100%; font-family: var(--font-heavy); font-size: 2rem; cursor: pointer;
-            transition: all 0.3s ease;
-            text-shadow: 1px 1px 0 rgba(255,255,255,0.5);
-            box-shadow: 4px 4px 0 var(--blanco);
-        }
-
-        .inject-btn:hover {
-            background: var(--blanco);
-            box-shadow: 4px 4px 0 var(--celeste);
-        }
-
-        .intercept-msg {
-            display: block;
-            text-align: center;
-            margin-top: 15px;
-            font-size: 0.75rem;
-            color: var(--celeste);
-            letter-spacing: 2px;
-            animation: blink-msg 2s infinite;
-        }
-
-        @keyframes blink-msg {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.4; }
-        }
-
-        .contingency-note {
-            text-align: center;
-            font-size: 0.65rem;
-            color: #566f8a;
-            padding: 0 20px;
-            margin-top: 50px;
-            font-family: var(--font-code);
-            line-height: 1.4;
-        }
-
-        .live-tag {
-            position: fixed; bottom: 30px; right: 30px; background: #000000;
-            color: white; padding: 12px 20px; text-decoration: none;
-            font-family: var(--font-heavy); border: 2px solid var(--celeste); z-index: 1000;
-            animation: blink 1s infinite;
-        }
-
-        @keyframes blink { 50% { opacity: 0.7; } }
-
-        footer { text-align: center; padding: 20px 40px 40px 40px; font-size: 0.6rem; color: #1a2635; letter-spacing: 5px; }
-
-        @media (max-width: 768px) {
-            .grid-system { grid-template-columns: 1fr; }
-            .prize-card, .brecha-form, .location-lock { grid-column: span 1; }
-            .hacker-number { font-size: 7.5rem; }
-            .cd-box { min-width: 65px; padding: 10px; }
-            .cd-box span { font-size: 2.2rem; }
-            .inject-btn { font-size: 1.5rem; }
-            .brecha-form { padding: 25px 15px; }
-            .live-tag { bottom: 15px; right: 15px; padding: 8px 15px; font-size: 0.8rem; }
-        }
-        
-        .tiktok-tag {
-            bottom: 150px !important; 
-            background: #010101 !important; 
-            border-color: #00f2fe !important; 
-            box-shadow: 2px 2px 0 #fe0979; 
-        }
-
-        .fb-tag {
-            bottom: 210px !important; 
-            background: #1877f2 !important; 
-        }
-
-        @media (max-width: 768px) {
-            .tiktok-tag { bottom: 115px !important; }
-            .fb-tag { bottom: 165px !important; }
-        }
-    </style>
-    <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
-</head>
-</head>
-
-<script>
-  if ('serviceWorker' in navigator) {
-    window.addEventListener('load', () => {
-      navigator.serviceWorker.register('/sw.js')
-        .then(reg => console.log('App lista para instalar'))
-        .catch(err => console.log('Error de registro', err));
-    });
-  }
-</script>
-
-<body>
-
-    <header>
-        <div class="logo-container">
-            <img src="logoUT.png" class="tournament-logo" alt="Logo Underground Tournament">
-        </div>
-
-        <img src="chapa.png" class="chapa-img" alt="Chapa">
-        
-        <div class="countdown-container">
-            <div class="cd-box"><span id="days">00</span><label>DÍAS</label></div>
-            <div class="cd-box"><span id="hours">00</span><label>HORAS</label></div>
-            <div class="cd-box"><span id="mins">00</span><label>MINS</label></div>
-            <div class="cd-box" style="border-color: var(--blanco);"><span id="secs" style="color: var(--celeste);">00</span><label>SECS</label></div>
-        </div>
-    </header>
-
-    <div class="container">
-        <div class="grid-system">
-            <div class="status-box">
-                <h3>SQUADS_DISPONIBLES</h3>
-                <div style="font-family: var(--font-glitch); font-size: 3.5rem; color: var(--celeste);">90</div>
-            </div>
-
-            <div class="status-box" style="border-color: var(--celeste);">
-                <h3>ENTRY_FEE</h3>
-                <div style="font-family: var(--font-heavy); font-size: 2.5rem; color: var(--dorado);">$50.000</div>
-                <label style="font-size: 0.6rem; color: var(--blanco);">PESOS_ARGENTINOS</label>
-            </div>
-
-            <section class="prize-card">
-                <img src="https://i.postimg.cc/k5kFVzcW/D-NQ-NP-2X-881013-MLA47766242662-102021-F-compress-compress-removebg-preview.png" alt="Mondial Dax" class="dax-img">
-                <h2 style="font-family: var(--font-glitch); color: var(--text); margin: 0; letter-spacing: 2px;">MONDIAL DAX 70 BLACK</h2>
-            </section>
-
-            <section class="location-lock">
-                <h3>COORDENADAS_BLOQUEADAS</h3>
-                <div class="glitch-text">38.12XX° S / 57.6XXX° W</div>
-                <p style="font-size: 0.6rem; color: var(--celeste); margin-top: 10px;">DESCIFRANDO NODO CHAPADMALAL... ACCESO EN 24HS PRE-EVENTO</p>
-            </section>
-
-            <section class="brecha-form">
-                <h2 style="font-family: var(--font-glitch); color: var(--celeste); text-align: center; margin-top: 0;">SE ABRIÓ LA BRECHA</h2>
-                <form action="https://formspree.io/f/xvzlrozv" method="POST">
-                    <div class="field">
-                        <label>EQUIPO</label>
-                        <input type="text" name="team_name" placeholder="NOMBRE DEL EQUIPO..." required>
-                    </div>
-                    <div class="field">
-                        <label>ARQUERO</label>
-                        <input type="text" name="player_1" required>
-                    </div>
-                    <div class="field">
-                        <label>GOLEADOR</label>
-                        <input type="text" name="player_2" required>
-                    </div>
-                    <div class="field">
-                        <label>(WHATSAPP)</label>
-                        <input type="tel" name="whatsapp" placeholder="+54..." required>
-                    </div>
-                    <div class="field">
-                        <label>MOTIVO_VICTORIA // ¿POR QUÉ DEBERÍAN GANAR EL BOTÍN?</label>
-                        <textarea name="victory_reason" placeholder="ESCRIBAN SU MANIFIESTO..." required></textarea>
-                    </div>
-                    
-                    <button type="submit" class="inject-btn">INSCRIBITE YA</button>
-                    <span class="intercept-msg" style="color: var(--dorado);">NOS VEMOS EN LA CANCHA.</span>
-                </form>
-            </section>
-        </div>
-    </div>
-
-    <p class="contingency-note">
-        (EL TORNEO NO INICIARÁ HASTA NO CUBRIR TODOS LOS LUGARES. EN CASO DE NO COMPLETAR EL CUPO PARA LA FECHA ESTIPULADA, SE PROGRAMARÁ UNA NUEVA FECHA DE APERTURA)
-        WEB POR DEMIÁN CEPEDA.
-    </p>
-
-    <a href="https://www.youtube.com/@UnderTourChannel" target="_blank" class="live-tag">
-        ● UT en Youtube
-    </a>
-    <a href="https://www.instagram.com/undertourhere/" target="_blank" class="live-tag insta-tag">
-        ● UT en Instagram
-    </a>
-    <a href="https://www.facebook.com/share/18yig4K5zS/" target="_blank" class="live-tag fb-tag">
-        ● UT en Facebook
-    </a>
-    <a href="https://www.tiktok.com/@undergroundtourna?_r=1&_t=ZS-96vxB1xpMZ8" target="_blank" class="live-tag tiktok-tag">
-        ● UT en TikTok
-    </a>
-    <a href="https://www.instagram.com/undertourhere/" target="_blank" class="live-tag insta-tag">
-        ● UT en Instagram
-    </a>
-    <a href="https://www.youtube.com/@UnderTourChannel" target="_blank" class="live-tag">
-        ● UT en YouTube
-    </a>
-    <footer>UT_MMXIV // CHAPADMALAL // BSAS_ARG</footer>
-
-    <script>
-       const tournamentDate = new Date("July 8, 2026 10:00:00").getTime();
-        setInterval(function() {
-            const now = new Date().getTime();
-            const distance = tournamentDate - now;
-            if (distance < 0) return;
-            document.getElementById("days").innerHTML = Math.floor(distance / (1000 * 60 * 60 * 24)).toString().padStart(2, '0');
-            document.getElementById("hours").innerHTML = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)).toString().padStart(2, '0');
-            document.getElementById("mins").innerHTML = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60)).toString().padStart(2, '0');
-            document.getElementById("secs").innerHTML = Math.floor((distance % (1000 * 60)) / 1000).toString().padStart(2, '0');
-        }, 1000);
-    </script>
-   <script>
-  if (window.netlifyIdentity) {
-    // Inicializa el widget de Netlify Identity
-    window.netlifyIdentity.on("init", user => {
-      if (!user) {
-        window.netlifyIdentity.on("login", () => {
-          document.location.href = "/admin/";
-        });
-      }
-    });
-
-    // ¡ESTO ES LO QUE FALTA! Atrapa al usuario cuando confirma el mail
-    window.netlifyIdentity.on("login", (user) => {
-      document.location.href = "/admin/";
-    });
-  }
-</script>
-    <script>
-       const tournamentDate = new Date("July 8, 2026 10:00:00").getTime();
-       // ... tu script del contador actual igual ...
-    </script>
-
-    <script>
-      // 1. Si entramos con un token (invitación/recuperación), forzamos a que el widget se abra solo
-      if (window.location.hash.includes("invite_token") || window.location.hash.includes("recovery_token") || window.location.hash.includes("access_token")) {
-        window.netlifyIdentity.open();
-      }
-
-      // 2. Controlamos el inicio de sesión y redirección
-      if (window.netlifyIdentity) {
-        window.netlifyIdentity.on("init", user => {
-          if (!user) {
-            window.netlifyIdentity.on("login", () => {
-              document.location.href = "/admin/";
-            });
-          }
-        });
-
-        window.netlifyIdentity.on("login", () => {
-          document.location.href = "/admin/";
-        });
-      }
-    </script>
-
-</body>
-</html>
+            background
