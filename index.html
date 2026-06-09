@@ -329,7 +329,6 @@
     </style>
     <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
 </head>
-</head>
 
 <script>
   if ('serviceWorker' in navigator) {
@@ -450,35 +449,14 @@
             document.getElementById("secs").innerHTML = Math.floor((distance % (1000 * 60)) / 1000).toString().padStart(2, '0');
         }, 1000);
     </script>
-   <script>
-  if (window.netlifyIdentity) {
-    // Inicializa el widget de Netlify Identity
-    window.netlifyIdentity.on("init", user => {
-      if (!user) {
-        window.netlifyIdentity.on("login", () => {
-          document.location.href = "/admin/";
-        });
-      }
-    });
-
-    // ¡ESTO ES LO QUE FALTA! Atrapa al usuario cuando confirma el mail
-    window.netlifyIdentity.on("login", (user) => {
-      document.location.href = "/admin/";
-    });
-  }
-</script>
-    <script>
-       const tournamentDate = new Date("July 8, 2026 10:00:00").getTime();
-       // ... tu script del contador actual igual ...
-    </script>
 
     <script>
-      // 1. Si entramos con un token (invitación/recuperación), forzamos a que el widget se abra solo
+      // 1. Abre el widget si venimos con el token de invitacion en la URL
       if (window.location.hash.includes("invite_token") || window.location.hash.includes("recovery_token") || window.location.hash.includes("access_token")) {
         window.netlifyIdentity.open();
       }
 
-      // 2. Controlamos el inicio de sesión y redirección
+      // 2. Maneja el estado del Login y manda al usuario a la ruta admin
       if (window.netlifyIdentity) {
         window.netlifyIdentity.on("init", user => {
           if (!user) {
