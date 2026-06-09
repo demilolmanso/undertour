@@ -36,18 +36,22 @@
         * { box-sizing: border-box; }
 
         body {
-            background-color: var(--bg);
-            background-image: 
-                linear-gradient(rgba(10, 17, 24, 0.95), rgba(10, 17, 24, 0.95)),
-                url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="150" height="150" viewBox="0 0 150 150"><text x="0" y="20" fill="rgba(116,172,223,0.07)" font-family="monospace" font-size="10">FIEBRE_MUNDIAL_UT_SYSTEM_INFILTRATED</text></svg>'),
-                url('https://www.transparenttextures.com/patterns/asfalt-dark.png');
-            color: var(--text);
-            font-family: var(--font-code);
-            margin: 0;
-            text-transform: uppercase;
-            overflow-x: hidden;
-            width: 100%;
-        }
+    background-color: var(--bg);
+    /* Mezclamos una capa oscura transparente para que el texto siga siendo legible y la imagen de fondo abajo */
+    background-image: 
+        linear-gradient(rgba(10, 17, 24, 0.85), rgba(10, 17, 24, 0.85)), 
+        url('fondo.png'); 
+    background-size: cover;         /* Hace que la imagen cubra toda la pantalla */
+    background-position: center;    /* Centra la imagen */
+    background-attachment: fixed;  /* El fondo se queda quieto al scrollear (efecto pro) */
+    background-repeat: no-repeat;
+    color: var(--text);
+    font-family: var(--font-code);
+    margin: 0;
+    text-transform: uppercase;
+    overflow-x: hidden;
+    width: 100%;
+}
 
         body::before {
             content: " ";
