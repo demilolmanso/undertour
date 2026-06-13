@@ -87,8 +87,8 @@
         }
 
         .tournament-logo {
-            width: 5000px;          
-            height: auto;          
+            width: 5000px;            
+            height: auto;            
             max-width: 65%;        
             filter: drop-shadow(0 0 15px var(--celeste)); 
             animation: glitch-img 4s infinite; 
@@ -223,11 +223,44 @@
             30% { transform: translateX(0); }
         }
 
+        /* Contenedor del Botón Lista de Equipos */
+        .teams-btn-container {
+            grid-column: span 2;
+            width: 100%;
+            text-align: center;
+            margin-top: 15px;
+            margin-bottom: 5px;
+        }
+
+        .view-teams-btn {
+            display: block;
+            background: transparent;
+            color: var(--celeste);
+            border: 1px dashed var(--celeste);
+            padding: 18px;
+            width: 100%;
+            font-family: var(--font-code);
+            font-size: 1rem;
+            font-weight: 900;
+            text-decoration: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 4px 4px 0 rgba(116, 172, 223, 0.15);
+            letter-spacing: 2px;
+        }
+
+        .view-teams-btn:hover {
+            background: rgba(116, 172, 223, 0.1);
+            border-style: solid;
+            color: var(--blanco);
+            box-shadow: 4px 4px 0 var(--celeste);
+        }
+
         .brecha-form {
             grid-column: span 2;
             border: 2px solid var(--celeste);
             padding: 40px;
-            margin-top: 20px;
+            margin-top: 10px;
             background: #050a0f;
             box-shadow: 0 0 15px rgba(116, 172, 223, 0.1);
         }
@@ -295,10 +328,11 @@
 
         @media (max-width: 768px) {
             .grid-system { grid-template-columns: 1fr; }
-            .prize-card, .brecha-form, .location-lock { grid-column: span 1; }
+            .prize-card, .brecha-form, .location-lock, .teams-btn-container { grid-column: span 1; }
             .hacker-number { font-size: 7.5rem; }
             .cd-box { min-width: 65px; padding: 10px; }
             .cd-box span { font-size: 2.2rem; }
+            .view-teams-btn { font-size: 0.85rem; padding: 15px; }
             .inject-btn { font-size: 1.5rem; }
             .brecha-form { padding: 25px 15px; }
             .live-tag { bottom: 15px; right: 15px; padding: 8px 15px; font-size: 0.8rem; }
@@ -365,6 +399,10 @@
                 <p style="font-size: 0.6rem; color: var(--celeste); margin-top: 10px;">DESCIFRANDO NODO CHAPADMALAL... ACCESO EN 24HS PRE-EVENTO</p>
             </section>
 
+            <div class="teams-btn-container">
+                <a href="https://undergroundtournament.com/lista/" class="view-teams-btn">[ ACCEDER_A_SQUADS_REGISTRADOS ]</a>
+            </div>
+
             <section class="brecha-form">
                 <h2 style="font-family: var(--font-glitch); color: var(--celeste); text-align: center; margin-top: 0;">SE ABRIÓ LA BRECHA</h2>
                 <form action="https://formspree.io/f/xvzlrozv" method="POST">
@@ -429,7 +467,6 @@
         }, 1000);
     </script>
 
-    <!-- El script del Service Worker ahora bien posicionado dentro del body -->
     <script>
       if ('serviceWorker' in navigator) {
         window.addEventListener('load', () => {
@@ -440,12 +477,10 @@
       }
     </script>
 
-    <!-- Script de Netlify Identity corregido (Sin duplicaciones) -->
     <script>
       if (window.netlifyIdentity) {
         window.netlifyIdentity.on("init", user => {
           if (!user) {
-            // El evento login SOLO se activa si el usuario no estaba previamente autenticado
             window.netlifyIdentity.on("login", () => {
               document.location.href = "/admin/";
             });
@@ -453,7 +488,6 @@
         });
       }
 
-      // Abre el modal automáticamente si la URL trae un token válido
       if (window.location.hash.includes("invite_token") || 
           window.location.hash.includes("recovery_token") || 
           window.location.hash.includes("access_token")) {
