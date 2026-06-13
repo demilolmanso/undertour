@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reglas y Avisos - Underground Tournament</title>
+    <style>
+        /* --- ESTILOS BASE (Estilo Underground) --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        body {
+            background: radial-gradient(circle at center, #1a1a1a 0%, #0a0a0a 100%);
+            color: #ffffff;
+            min-height: 100vh;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* --- CONTENEDOR PRINCIPAL --- */
+        .container {
+            max-width: 800px;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            padding: 40px;
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+        }
+
+        /* --- ENCABEZADO --- */
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+            border-bottom: 2px solid #ff4a4a; /* Detalle en rojo/neon */
+            padding-bottom: 20px;
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            text-shadow: 0 0 10px rgba(255, 74, 74, 0.5);
+        }
+
+        header p {
+            color: #888;
+            margin-top: 10px;
+            font-size: 1.1rem;
+        }
+
+        /* --- SECCIONES DE CONTENIDO --- */
+        section {
+            margin-bottom: 35px;
+        }
+
+        section:last-of-type {
+            margin-bottom: 0;
+        }
+
+        h2 {
+            font-size: 1.5rem;
+            color: #ff4a4a;
+            text-transform: uppercase;
+            margin-bottom: 15px;
+            letter-spacing: 1px;
+        }
+
+        /* --- LISTAS Y TEXTO --- */
+        p {
+            color: #ccc;
+            line-height: 1.6;
+            margin-bottom: 15px;
+            font-size: 1rem;
+        }
+
+        ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        li {
+            color: #eee;
+            position: relative;
+            padding-left: 25px;
+            margin-bottom: 12px;
+            line-height: 1.5;
+        }
+
+        /* Viñeta personalizada con estilo de cruz/subterráneo */
+        li::before {
+            content: "✖";
+            position: absolute;
+            left: 0;
+            color: #ff4a4a;
+            font-size: 0.8rem;
+            top: 2px;
+        }
+
+        /* --- DISCLAIMER / AVISO DESTACADO --- */
+        .disclaimer-box {
+            background: rgba(255, 74, 74, 0.1);
+            border-left: 4px solid #ff4a4a;
+            padding: 20px;
+            border-radius: 4px;
+            margin-top: 30px;
+        }
+
+        .disclaimer-box h3 {
+            color: #ff4a4a;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+            font-size: 1.1rem;
+        }
+
+        .disclaimer-box p {
+            color: #ddd;
+            font-size: 0.95rem;
+            margin-bottom: 0;
+        }
+
+        /* --- BOTÓN VOLVER --- */
+        .btn-back {
+            display: inline-block;
+            margin-top: 40px;
+            color: #fff;
+            text-decoration: none;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            font-weight: bold;
+            letter-spacing: 1px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 12px 25px;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .btn-back:hover {
+            background: #fff;
+            color: #0a0a0a;
+            box-shadow: 0 0 15px rgba(255, 255, 255, 0.4);
+        }
+
+        /* --- RESPONSIVE --- */
+        @media (max-width: 600px) {
+            .container {
+                padding: 20px;
+            }
+            header h1 {
+                font-size: 1.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <header>
+            <h1>Underground Tournament</h1>
+            <p>Reglamento Oficial y Avisos Legales</p>
+        </header>
+
+        <main>
+            <!-- SECCIÓN: REGLAS -->
+            <section>
+                <h2>1. Reglas del Torneo</h2>
+                <p>Para garantizar la transparencia y el Fair Play en la competencia, todos los equipos y jugadores deben acatar las siguientes normas:</p>
+                <ul>
+                    <li><strong>Inscripción:</strong> Los cupos son limitados. Solo se considerarán válidos los equipos que hayan completado correctamente el formulario y recibido la confirmación oficial.</li>
+                    <li><strong>Puntualidad:</strong> Equipo que no se presente a la hora citada quedará descalificado automáticamente (Walkover). Sin excepciones.</li>
+                    <li><strong>Conducta:</strong> No se tolerará ningún tipo de agresión física o verbal hacia los rivales, organizadores o el público. Esto será motivo de expulsión inmediata del torneo.</li>
+                    <li><strong>Formato:</strong> Las especificaciones del sistema de juego (eliminación directa, tiempos de juego, etc.) se detallarán en la mesa de control antes del inicio.</li>
+                </ul>
+            </section>
+
+            <hr style="border: 0; border-top: 1px solid rgba(255,255,255,0.1); margin: 30px 0;">
+
+            <!-- SECCIÓN: AVISO LEGAL -->
+            <section>
+                <h2>2. Términos y Condiciones</h2>
+                <p>Al inscribirse y participar en el Underground Tournament, los capitanes y sus respectivos jugadores aceptan los términos de la organización.</p>
+                <p>La organización se reserva el derecho de admisión y permanencia en el evento, así como la facultad de modificar los horarios por razones de fuerza mayor, lo cual será comunicado con la debida antelación a los delegados de cada equipo.</p>
+            </section>
+
+            <!-- SECCIÓN: DISCLAIMER -->
+            <section class="disclaimer-box">
+                <h3>Gran Disclaimer de Responsabilidad</h3>
+                <p>El Underground Tournament es un evento deportivo independiente. La organización <strong>no se hace responsable</strong> por lesiones, accidentes físicos, pérdidas de objetos personales o cualquier inconveniente de salud que sufran los participantes o el público asistente antes, durante o después del desarrollo del torneo. Cada jugador participa bajo su propio riesgo y responsabilidad.</p>
+            </section>
+        </main>
+
+        <footer style="text-align: center;">
+            <a href="../" class="btn-back">Volver al Inicio</a>
+        </footer>
+    </div>
+
+</body>
+</html>
