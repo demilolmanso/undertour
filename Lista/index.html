@@ -288,7 +288,7 @@
                     
                     postElement.innerHTML = `
                         ${data.title ? `<h2>${data.title}</h2>` : ''}
-                        <span class="date-tag">REGISTRO_LOG // FECHA: ${data.date ? new Date(data.date).toLocaleDateString() : 'DESCONOCIDA'}</span>
+                        <span class="date-tag">FECHA: ${data.date ? new Date(data.date).toLocaleDateString() : 'DESCONOCIDA'}</span>
                         <p>${data.body || data.description || 'Sin datos de manifiesto.'}</p>
                     `;
                     container.appendChild(postElement);
