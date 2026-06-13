@@ -6,14 +6,20 @@
     <title>UT | TRANSMISIONES_DE_LA_BRECHA</title>
     <link href="https://fonts.googleapis.com/css2?family=Rubik+Glitch&family=Source+Code+Pro:wght@400;900&display=swap" rel="stylesheet">
     <style>
-        /* Acá podés pegar los mismos estilos de tu CSS original */
         body {
             background-color: #000;
             color: #fff;
             font-family: 'Source Code Pro', monospace;
             padding: 40px 20px;
+            margin: 0;
         }
-        .blog-header { text-align: center; font-family: 'Rubik Glitch'; color: #7012b3; font-size: 2.5rem; }
+        .blog-header { 
+            text-align: center; 
+            font-family: 'Rubik Glitch', system-ui; 
+            color: #7012b3; 
+            font-size: 2.5rem; 
+            text-transform: uppercase;
+        }
         .post-card {
             border: 1px solid #7012b3;
             background: rgba(5,5,5,0.9);
@@ -22,47 +28,76 @@
             max-width: 600px;
             box-shadow: 4px 4px 0 #82c91e;
         }
-        .post-card h2 { color: #82c91e; margin-top: 0; }
-        .post-card a { color: #fff; text-decoration: none; font-weight: bold; display: inline-block; margin-top: 10px; border: 1px solid #82c91e; padding: 5px 10px;}
+        .post-card h2 { color: #82c91e; margin-top: 0; text-transform: uppercase;}
+        .post-card p { line-height: 1.5; color: #e0e0e0; }
+        .post-card a { 
+            color: #fff; 
+            text-decoration: none; 
+            font-weight: bold; 
+            display: inline-block; 
+            margin-top: 10px; 
+            border: 1px solid #82c91e; 
+            padding: 5px 10px;
+            transition: all 0.2s ease;
+        }
+        .post-card a:hover {
+            background: #82c91e;
+            color: #000;
+        }
+        .date-tag {
+            color: #a0a0a0; /* Gris claro corregido para que sea legible sobre negro */
+            font-size: 0.8rem;
+            display: block;
+            margin-bottom: 8px;
+        }
     </style>
 </head>
 <body>
 
     <h1 class="blog-header">NODO_BLOG_INFILTRADO</h1>
-    <div id="blog-posts-container">
-        </div>
+    <div id="blog-posts-container"></div>
 
     <script>
-        // Lista manual de tus posts (Decap no genera un índice automático en JS nativo,
-        // por lo que cada vez que crees uno nuevo en el CMS, agregás el nombre del archivo acá)
+        // Lista manual de tus posts.
+        // Asegúrate de que el nombre coincida EXACTAMENTE con el archivo generado por el CMS.
         const posts = [
-            'primer-comunicado' // Si tu post en el CMS se guardó como primer-comunicado.json
+            'primer-comunicado' 
         ];
 
         const container = document.getElementById('blog-posts-container');
 
         async function loadPosts() {
-            if(posts.length === 0) {
-                container.innerHTML = '<p style="text-align:center;">NO SE ENCONTRARON TRANSMISIONES ACTIVAS...</p>';
+            if (posts.length === 0) {
+                container.innerHTML = '<p style="text-align:center; color:#7012b3;">NO SE ENCONTRARON TRANSMISIONES ACTIVAS...</p>';
                 return;
             }
 
             for (const slug of posts) {
                 try {
+                    // ⚠️ REVISAR ESTA RUTA: Debe ser la carpeta real donde el CMS guarda los JSON
                     const response = await fetch(`/blog/posts/${slug}.json`);
+                    
+                    if (!response.ok) throw new Error(`No se pudo encontrar el archivo: ${slug}.json`);
+                    
                     const data = await response.json();
                     
                     const postElement = document.createElement('article');
                     postElement.className = 'post-card';
                     postElement.innerHTML = `
-                        <h2>${data.title}</h2>
-                        <small style="color: #444;">FECHA: ${new Date(data.date).toLocaleDateString()}</small>
-                        <p>${data.description}</p>
-                        <a href="/blog/post.html?id=${slug}">LEER_TRANSMISION_></a>
+                        <h2>${data.title || 'SIN TÍTULO'}</h2>
+                        <span class="date-tag">FECHA: ${data.date ? new Date(data.date).toLocaleDateString() : 'NO ESPECIFICADA'}</span>
+                        <p>${data.description || 'Sin descripción disponible.'}</p>
+                        <!-- El enlace individual al post completo -->
+                        <a href="/blog/post.html?id=${slug}">LEER_TRANSMISION_&gt;</a>
                     `;
                     container.appendChild(postElement);
                 } catch (error) {
                     console.error("Error cargando el post:", error);
+                    // Agrega un aviso visual sutil en desarrollo para saber qué archivo falló
+                    const errorNotice = document.createElement('p');
+                    errorNotice.style.cssText = "color: #ff3333; text-align: center; font-size: 0.8rem;";
+                    errorNotice.innerText = `[ERROR: Error al conectar con nodo remoto "${slug}"]`;
+                    container.appendChild(errorNotice);
                 }
             }
         }
