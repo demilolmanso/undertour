@@ -15,9 +15,8 @@ collections:
     slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
     identifier_field: date
     fields:
-      - { label: "Título de la Transmisión", name: "title", widget: "string" }
-      - { label: "Fecha", name: "date", widget: "datetime" }
+      - { label: "Nombre deñ equipo", name: "title", widget: "string" }
+      - { label: "Fecha (con el boton now se pone automaticamente)", name: "date", widget: "datetime" }
       - { label: "Resumen sutil o Descripción", name: "description", widget: "string" }
-      - { label: "Cuerpo del Comunicado (Texto)", name: "body", widget: "text" }
+      - { label: "Aca describis un toque lo que quieras", name: "body", widget: "text" }
       - { label: "Foto opcional", name: "foto", widget: "image", required: false }
-      - { label: "Código de Video incrustado", name: "video", widget: "text", required: false }
