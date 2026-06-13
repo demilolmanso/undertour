@@ -45,7 +45,7 @@
             color: #000;
         }
         .date-tag {
-            color: #a0a0a0; /* Gris claro corregido para que sea legible sobre negro */
+            color: #a0a0a0; 
             font-size: 0.8rem;
             display: block;
             margin-bottom: 8px;
@@ -58,10 +58,10 @@
     <div id="blog-posts-container"></div>
 
     <script>
-        // Lista manual de tus posts.
-        // Asegúrate de que el nombre coincida EXACTAMENTE con el archivo generado por el CMS.
+        // Lista manual con los dos ID que figuran en tus capturas de pantalla de hoy
         const posts = [
-            'primer-comunicado' 
+            '2026-06-13-2026-06-13t10-19-00-000-03-00',
+            '2026-06-13-2026-06-13t10-13-00-000-03-00'
         ];
 
         const container = document.getElementById('blog-posts-container');
@@ -74,29 +74,27 @@
 
             for (const slug of posts) {
                 try {
-                    // ⚠️ REVISAR ESTA RUTA: ${slug}.json
+                    // Apunta directo a la carpeta e intenta leer el JSON estructurado
                     const response = await fetch(`/microblog/posts/${slug}.json`);
                     
-                    if (!response.ok) throw new Error(`No se pudo encontrar el archivo: ${slug}.json`);
+                    if (!response.ok) throw new Error(`Nodo inaccesible o archivo inexistente.`);
                     
                     const data = await response.json();
                     
                     const postElement = document.createElement('article');
                     postElement.className = 'post-card';
                     postElement.innerHTML = `
-                        <h2>${data.title || 'SIN TÍTULO'}</h2>
-                        <span class="date-tag">FECHA: ${data.date ? new Date(data.date).toLocaleDateString() : 'NO ESPECIFICADA'}</span>
-                        <p>${data.description || 'Sin descripción disponible.'}</p>
-                        <!-- El enlace individual al post completo -->
-                        <a href="/blog/post.html?id=${slug}">LEER_TRANSMISION_&gt;</a>
+                        <h2>${data.title || 'TRANSMISIÓN SIN TÍTULO'}</h2>
+                        <span class="date-tag">FECHA: ${data.date ? new Date(data.date).toLocaleDateString() : 'DESCONOCIDA'}</span>
+                        <p>${data.description || data.body || 'Sin contenido o descripción disponible.'}</p>
+                        <a href="/Lista/post.html?id=${slug}">LEER_TRANSMISION_&gt;</a>
                     `;
                     container.appendChild(postElement);
                 } catch (error) {
                     console.error("Error cargando el post:", error);
-                    // Agrega un aviso visual sutil en desarrollo para saber qué archivo falló
                     const errorNotice = document.createElement('p');
                     errorNotice.style.cssText = "color: #ff3333; text-align: center; font-size: 0.8rem;";
-                    errorNotice.innerText = `[ERROR: Error al conectar con nodo remoto "${slug}"]`;
+                    errorNotice.innerText = `[ERROR: Sincronización fallida con subnodo "${slug.substring(0,15)}..."]`;
                     container.appendChild(errorNotice);
                 }
             }
