@@ -2,205 +2,278 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Reglas y Avisos - Underground Tournament</title>
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    <link rel="icon" type="image/png" href="https://undergroundtournament.com/logo192.png">
+    <link rel="apple-touch-icon" href="https://undergroundtournament.com/logo192.png">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>UT | REGLAS_Y_AVISOS</title>
+    <!-- Importación de las fuentes oficiales de la web principal -->
+    <link href="https://fonts.googleapis.com/css2?family=Michroma&family=Rubik+Glitch&family=Source+Code+Pro:wght@400;700;900&family=Teko:wght@700&display=swap" rel="stylesheet">
+    
     <style>
-        /* --- ESTILOS BASE (Estilo Underground) --- */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+        :root {
+            --bg: #0a1118;         /* Fondo oscuro azulado profundo */
+            --celeste: #74acdf;    /* El celeste oficial de la selección */
+            --blanco: #ffffff;     /* Blanco puro para contrastes masivos */
+            --dorado: #f1c40f;     /* Oro para los destaques de campeón */
+            --text: #ffffff;
+            --font-glitch: 'Rubik Glitch', system-ui;
+            --font-tech: 'Michroma', sans-serif;
+            --font-code: 'Source Code Pro', monospace;
+            --font-heavy: 'Teko', sans-serif;
         }
 
+        * { box-sizing: border-box; }
+
         body {
-            background: radial-gradient(circle at center, #1a1a1a 0%, #0a0a0a 100%);
-            color: #ffffff;
-            min-height: 100vh;
-            padding: 20px;
+            background-color: var(--bg);
+            background-image: 
+                linear-gradient(rgba(10, 17, 24, 0.85), rgba(10, 17, 24, 0.85)), 
+                url('fondo.png'); 
+            background-size: cover;         
+            background-position: center;    
+            background-attachment: fixed;  
+            background-repeat: no-repeat;
+            color: var(--text);
+            font-family: var(--font-code);
+            margin: 0;
+            text-transform: uppercase;
+            overflow-x: hidden;
+            width: 100%;
+        }
+
+        /* Efecto de líneas de escaneo CRT original de la web */
+        body::before {
+            content: " ";
+            position: fixed;
+            top: 0; left: 0; bottom: 0; right: 0;
+            background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.35) 50%);
+            z-index: 9998;
+            background-size: 100% 2px;
+            pointer-events: none;
+        }
+
+        header {
+            padding-top: 40px; 
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        .logo-container {
+            width: 100%;
             display: flex;
             justify-content: center;
             align-items: center;
+            padding: 15px 0;
+            z-index: 5;
         }
 
-        /* --- CONTENEDOR PRINCIPAL --- */
+        .tournament-logo {
+            width: 100%;            
+            height: auto;            
+            max-width: 300px;        
+            filter: drop-shadow(0 0 15px var(--celeste)); 
+            animation: glitch-img 4s infinite; 
+        }
+
+        @keyframes glitch-img {
+            0% { transform: translate(0); }
+            1% { transform: translate(-2px, 1px); filter: hue-rotate(180deg); } 
+            2% { transform: translate(2px, -1px); filter: brightness(1.5); }
+            3% { transform: translate(0); filter: none; }
+        }
+
         .container {
-            max-width: 800px;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 20px 100px 20px;
             width: 100%;
-            background: rgba(255, 255, 255, 0.03);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 16px;
+        }
+
+        /* Caja contenedora estilo "Brecha Form" */
+        .info-box {
+            border: 2px solid var(--celeste);
             padding: 40px;
-            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+            margin-top: 30px;
+            background: #050a0f;
+            box-shadow: 0 0 15px rgba(116, 172, 223, 0.1);
         }
 
-        /* --- ENCABEZADO --- */
-        header {
+        h1 {
+            font-family: var(--font-glitch);
+            color: var(--celeste);
             text-align: center;
-            margin-bottom: 40px;
-            border-bottom: 2px solid #ff4a4a; /* Detalle en rojo/neon */
-            padding-bottom: 20px;
-        }
-
-        header h1 {
-            font-size: 2.5rem;
-            text-transform: uppercase;
+            margin-top: 0;
+            font-size: 2rem;
             letter-spacing: 2px;
-            text-shadow: 0 0 10px rgba(255, 74, 74, 0.5);
-        }
-
-        header p {
-            color: #888;
-            margin-top: 10px;
-            font-size: 1.1rem;
-        }
-
-        /* --- SECCIONES DE CONTENIDO --- */
-        section {
-            margin-bottom: 35px;
-        }
-
-        section:last-of-type {
-            margin-bottom: 0;
         }
 
         h2 {
-            font-size: 1.5rem;
-            color: #ff4a4a;
-            text-transform: uppercase;
+            font-family: var(--font-heavy);
+            color: var(--dorado);
+            font-size: 1.8rem;
+            margin-top: 30px;
             margin-bottom: 15px;
+            border-bottom: 1px dashed var(--celeste);
+            padding-bottom: 5px;
             letter-spacing: 1px;
         }
 
-        /* --- LISTAS Y TEXTO --- */
         p {
-            color: #ccc;
+            color: var(--blanco);
+            font-size: 0.9rem;
             line-height: 1.6;
             margin-bottom: 15px;
-            font-size: 1rem;
         }
 
         ul {
             list-style: none;
             padding-left: 0;
+            margin-bottom: 25px;
         }
 
         li {
-            color: #eee;
+            color: var(--blanco);
             position: relative;
             padding-left: 25px;
-            margin-bottom: 12px;
+            margin-bottom: 15px;
+            line-height: 1.5;
+            font-size: 0.85rem;
+        }
+
+        /* Viñeta con el estilo de corchete o cruz de la temática */
+        li::before {
+            content: "[✖]";
+            position: absolute;
+            left: 0;
+            color: var(--celeste);
+            font-family: var(--font-code);
+            font-weight: bold;
+        }
+
+        li strong {
+            color: var(--celeste);
+        }
+
+        /* Gran Disclaimer Box */
+        .disclaimer-card {
+            border: 1px dashed var(--dorado);
+            background: rgba(241, 196, 15, 0.05);
+            padding: 25px;
+            margin-top: 40px;
+            position: relative;
+        }
+
+        .disclaimer-card h3 {
+            font-family: var(--font-glitch);
+            color: var(--dorado);
+            margin-top: 0;
+            font-size: 1.1rem;
+            text-align: center;
+        }
+
+        .disclaimer-card p {
+            color: var(--blanco);
+            font-size: 0.8rem;
+            text-align: center;
+            margin-bottom: 0;
             line-height: 1.5;
         }
 
-        /* Viñeta personalizada con estilo de cruz/subterráneo */
-        li::before {
-            content: "✖";
-            position: absolute;
-            left: 0;
-            color: #ff4a4a;
-            font-size: 0.8rem;
-            top: 2px;
-        }
-
-        /* --- DISCLAIMER / AVISO DESTACADO --- */
-        .disclaimer-box {
-            background: rgba(255, 74, 74, 0.1);
-            border-left: 4px solid #ff4a4a;
-            padding: 20px;
-            border-radius: 4px;
-            margin-top: 30px;
-        }
-
-        .disclaimer-box h3 {
-            color: #ff4a4a;
-            text-transform: uppercase;
-            margin-bottom: 10px;
-            font-size: 1.1rem;
-        }
-
-        .disclaimer-box p {
-            color: #ddd;
-            font-size: 0.95rem;
-            margin-bottom: 0;
-        }
-
-        /* --- BOTÓN VOLVER --- */
-        .btn-back {
-            display: inline-block;
+        /* Botón de retorno adaptado de la "Lista de Equipos" */
+        .back-btn-container {
+            width: 100%;
+            text-align: center;
             margin-top: 40px;
-            color: #fff;
+        }
+
+        .back-btn {
+            display: block;
+            background: transparent;
+            color: var(--celeste);
+            border: 1px dashed var(--celeste);
+            padding: 18px;
+            width: 100%;
+            font-family: var(--font-code);
+            font-size: 1rem;
+            font-weight: 900;
             text-decoration: none;
-            text-transform: uppercase;
-            font-size: 0.9rem;
-            font-weight: bold;
-            letter-spacing: 1px;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            padding: 12px 25px;
-            border-radius: 8px;
             transition: all 0.3s ease;
+            box-shadow: 4px 4px 0 rgba(116, 172, 223, 0.15);
+            letter-spacing: 2px;
         }
 
-        .btn-back:hover {
-            background: #fff;
-            color: #0a0a0a;
-            box-shadow: 0 0 15px rgba(255, 255, 255, 0.4);
+        .back-btn:hover {
+            background: rgba(116, 172, 223, 0.1);
+            border-style: solid;
+            color: var(--blanco);
+            box-shadow: 4px 4px 0 var(--celeste);
         }
 
-        /* --- RESPONSIVE --- */
-        @media (max-width: 600px) {
-            .container {
-                padding: 20px;
-            }
-            header h1 {
-                font-size: 1.8rem;
-            }
+        .contingency-note {
+            text-align: center;
+            font-size: 0.65rem;
+            color: #566f8a;
+            padding: 0 20px;
+            margin-top: 50px;
+            line-height: 1.4;
+        }
+
+        @media (max-width: 768px) {
+            .info-box { padding: 25px 15px; }
+            h1 { font-size: 1.5rem; }
+            h2 { font-size: 1.4rem; }
+            .back-btn { font-size: 0.85rem; padding: 15px; }
         }
     </style>
 </head>
+
 <body>
 
-    <div class="container">
-        <header>
-            <h1>Underground Tournament</h1>
-            <p>Reglamento Oficial y Avisos Legales</p>
-        </header>
+   
 
-        <main>
-            <!-- SECCIÓN: REGLAS -->
+    <div class="container">
+        <main class="info-box">
+            <h1>REGLAS_Y_AVISOS</h1>
+            
+            <!-- SECCIÓN: REGLAMENTO -->
             <section>
-                <h2>1. Reglas del Torneo</h2>
-                <p>Para garantizar la transparencia y el Fair Play en la competencia, todos los equipos y jugadores deben acatar las siguientes normas:</p>
+                <h2>[01] REGLAMENTO DE COMPETENCIA</h2>
+                <p>PARA GARANTIZAR LA TRANSPARENCIA EN LA BRECHA, TODOS LOS EQUIPOS DEBEN ACATAR LAS SIGUIENTES DIRECTIVAS DE MANERA ESTRICTA:</p>
                 <ul>
-                    <li><strong>Inscripción:</strong> Los cupos son limitados. Solo se considerarán válidos los equipos que hayan completado correctamente el formulario y recibido la confirmación oficial.</li>
-                    <li><strong>Puntualidad:</strong> Equipo que no se presente a la hora citada quedará descalificado automáticamente (Walkover). Sin excepciones.</li>
-                    <li><strong>Conducta:</strong> No se tolerará ningún tipo de agresión física o verbal hacia los rivales, organizadores o el público. Esto será motivo de expulsión inmediata del torneo.</li>
-                    <li><strong>Formato:</strong> Las especificaciones del sistema de juego (eliminación directa, tiempos de juego, etc.) se detallarán en la mesa de control antes del inicio.</li>
+                    <li><strong>INSCRIPCIÓN:</strong> LOS CUPOS SON ESTRICTAMENTE LIMITADOS. SOLO SE CONSIDERARÁN VÁLIDOS LOS EQUIPOS QUE COMPLETEN EL FORMULARIO Y CONFIRMEN EL DEPÓSITO DE LA MATRÍCULA.</li>
+                    <li><strong>PUNTUALIDAD:</strong> EQUIPO QUE NO SE PRESENTE A LA HORA CITA QUEDARÁ DESCALIFICADO AUTOMÁTICAMENTE (WALKOVER). LA CANCHA NO ESPERA A NADIE.</li>
+                    <li><strong>CONDUCTA ULTRA:</strong> CERO TOLERANCIA A AGRESIONES FÍSICAS O VERBALES FUERA DEL JUEGO. CUALQUIER ALTERCADO SERÁ MOTIVO DE EXPULSIÓN INMEDIATA Y VETO PERMANENTE DE LA LIGA.</li>
+                    <li><strong>SISTEMA DE JUEGO:</strong> LAS ESPECIFICACIONES TÉCNICAS DE LAS ELIMINATORIAS SE DETALLARÁN EN LA MESA DE CONTROL PREVIO AL INICIO DEL TORNEO.</li>
                 </ul>
             </section>
 
-            <hr style="border: 0; border-top: 1px solid rgba(255,255,255,0.1); margin: 30px 0;">
-
-            <!-- SECCIÓN: AVISO LEGAL -->
+            <!-- SECCIÓN: TÉRMINOS LEGALES -->
             <section>
-                <h2>2. Términos y Condiciones</h2>
-                <p>Al inscribirse y participar en el Underground Tournament, los capitanes y sus respectivos jugadores aceptan los términos de la organización.</p>
-                <p>La organización se reserva el derecho de admisión y permanencia en el evento, así como la facultad de modificar los horarios por razones de fuerza mayor, lo cual será comunicado con la debida antelación a los delegados de cada equipo.</p>
+                <h2>[02] TÉRMINOS Y CONDICIONES</h2>
+                <p>AL MANDAR EL MANIFIESTO DE INSCRIPCIÓN, LOS CAPITANES Y SUS RESPECTIVOS JUGADORES ACEPTAN EN SU TOTALIDAD LAS CONDICIONES IMPUESTAS POR LA ORGANIZACIÓN DEL UNDERGROUND TOURNAMENT.</p>
+                <p>LA ORGANIZACIÓN SE RESERVA EL DERECHO EXCLUSIVO DE ADMISIÓN Y PERMANENCIA, ASÍ COMO LA FACULTAD DE REPROGRAMAR LAS FECHAS POR RAZONES DE FUERZA MAYOR O CASOS FORTUITOS.</p>
             </section>
 
-            <!-- SECCIÓN: DISCLAIMER -->
-            <section class="disclaimer-box">
-                <h3>Gran Disclaimer de Responsabilidad</h3>
-                <p>El Underground Tournament es un evento deportivo independiente. La organización <strong>no se hace responsable</strong> por lesiones, accidentes físicos, pérdidas de objetos personales o cualquier inconveniente de salud que sufran los participantes o el público asistente antes, durante o después del desarrollo del torneo. Cada jugador participa bajo su propio riesgo y responsabilidad.</p>
+            <!-- SECCIÓN: DISCLAIMER CRÍTICO -->
+            <section class="disclaimer-card">
+                <h3>GRAN_DISCLAIMER_DE_RESPONSABILIDAD</h3>
+                <p>EL UNDERGROUND TOURNAMENT ES UN EVENTO DEPORTIVO INDEPENDIENTE. LA ORGANIZACIÓN NO SE HACE RESPONSABLE POR LESIONES, ACCIDENTES FÍSICOS, DAÑOS, PÉRDIDAS DE OBJETOS PERSONALES O CUALQUIER INCONVENIENTE DE SALUD QUE SUFRAN LOS PARTICIPANTES O EL PÚBLICO ASISTENTE ANTES, DURANTE O DESPUÉS DEL DESARROLLO DE LA COMPETENCIA. CADA JUGADOR ENTRA A LA CANCHA BAJO SU PROPIO RIESGO Y RESPONSABILIDAD.</p>
             </section>
+
+            <!-- BOTÓN DE RETORNO AL HOME -->
+            <div class="back-btn-container">
+                <a href="https://undergroundtournament.com/" class="back-btn">[ VOLVER ATRÁS ]</a>
+            </div>
         </main>
-
-        <footer style="text-align: center;">
-            <a href="../" class="btn-back">Volver al Inicio</a>
-        </footer>
     </div>
+
+
 
 </body>
 </html>
