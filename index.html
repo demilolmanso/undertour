@@ -316,7 +316,7 @@
         }
 
         .live-tag {
-            position: fixed; bottom: 30px; right: 30px; background: #000000;
+            position: fixed; bottom: 30px; right: 30px; background: #ff0000;
             color: white; padding: 12px 20px; text-decoration: none;
             font-family: var(--font-heavy); border: 2px solid var(--celeste); z-index: 1000;
             animation: blink 1s infinite;
@@ -350,9 +350,15 @@
             background: #1877f2 !important; 
         }
 
+        .wa-tag {
+            bottom: 270px !important;
+            background: #25d366 !important;
+        }
+
         @media (max-width: 768px) {
             .tiktok-tag { bottom: 115px !important; }
             .fb-tag { bottom: 165px !important; }
+            .wa-tag { bottom: 215px !important; }
         }
     </style>
     <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
@@ -451,6 +457,9 @@
     </a>
     <a href="https://www.facebook.com/share/18yig4K5zS/" target="_blank" class="live-tag fb-tag">
         ● UT en Facebook
+    </a>
+    <a href="https://w.app/undertour" target="_blank" class="live-tag wa-tag">
+        ● UT en WhatsApp
     </a>
     <a href="https://www.tiktok.com/@undergroundtourna?_r=1&_t=ZS-96vxB1xpMZ8" target="_blank" class="live-tag tiktok-tag">
         ● UT en TikTok
