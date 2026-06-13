@@ -58,43 +58,63 @@
     <div id="blog-posts-container"></div>
 
     <script>
-        // Lista manual con los dos ID que figuran en tus capturas de pantalla de hoy
+        // 🛠️ COPIA Y PEGA ACÁ EL NOMBRE EXACTO DEL ARCHIVO NUEVO QUE SE CREÓ EN TU GITHUB
+        // (Búscalo en la carpeta microblog/posts/ y ponelo acá sin el .json)
         const posts = [
-            '2026-06-13-2026-06-13t10-19-00-000-03-00',
-            '2026-06-13-2026-06-13t10-13-00-000-03-00'
+            'pon-aqui-el-nombre-del-archivo-nuevo'
         ];
 
         const container = document.getElementById('blog-posts-container');
 
         async function loadPosts() {
-            if (posts.length === 0) {
-                container.innerHTML = '<p style="text-align:center; color:#7012b3;">NO SE ENCONTRARON TRANSMISIONES ACTIVAS...</p>';
+            if (posts.length === 0 || posts[0] === 'pon-aqui-el-nombre-del-archivo-nuevo') {
+                container.innerHTML = '<p style="text-align:center; color:#7012b3;">[SISTEMA] POR FAVOR, INGRESA UN NOMBRE DE ARCHIVO VÁLIDO EN EL SCRIPT...</p>';
                 return;
             }
 
-            for (const slug of posts) {
-                try {
-                    // Apunta directo a la carpeta e intenta leer el JSON estructurado
-                    const response = await fetch(`/microblog/posts/${slug}.json`);
-                    
-                    if (!response.ok) throw new Error(`Nodo inaccesible o archivo inexistente.`);
-                    
-                    const data = await response.json();
-                    
+            container.innerHTML = ''; // Limpiar contenedor
+
+            for (let slug of posts) {
+                // Forzar minúsculas por si GitHub se pone estricto
+                slug = slug.toLowerCase().trim();
+                
+                // Intentamos cargar desde la ruta absoluta
+                let urlsToTry = [
+                    `/microblog/posts/${slug}.json`,
+                    `../microblog/posts/${slug}.json`,
+                    `./microblog/posts/${slug}.json`
+                ];
+                
+                let data = null;
+                let responseOK = false;
+
+                for (let url of urlsToTry) {
+                    try {
+                        const response = await fetch(url);
+                        if (response.ok) {
+                            data = await response.json();
+                            responseOK = true;
+                            break; 
+                        }
+                    } catch (e) {
+                        // Continuar intentando con la siguiente ruta alternativa
+                    }
+                }
+
+                if (responseOK && data) {
                     const postElement = document.createElement('article');
                     postElement.className = 'post-card';
                     postElement.innerHTML = `
                         <h2>${data.title || 'TRANSMISIÓN SIN TÍTULO'}</h2>
                         <span class="date-tag">FECHA: ${data.date ? new Date(data.date).toLocaleDateString() : 'DESCONOCIDA'}</span>
-                        <p>${data.description || data.body || 'Sin contenido o descripción disponible.'}</p>
+                        <p>${data.description || data.body || 'Sin contenido disponible.'}</p>
                         <a href="/Lista/post.html?id=${slug}">LEER_TRANSMISION_&gt;</a>
                     `;
                     container.appendChild(postElement);
-                } catch (error) {
-                    console.error("Error cargando el post:", error);
+                } else {
                     const errorNotice = document.createElement('p');
                     errorNotice.style.cssText = "color: #ff3333; text-align: center; font-size: 0.8rem;";
-                    errorNotice.innerText = `[ERROR: Sincronización fallida con subnodo "${slug.substring(0,15)}..."]`;
+                    errorNotice.innerHTML = `[ERROR: El archivo <b>${slug}.json</b> no existe en la carpeta microblog/posts/]`;
                     container.appendChild(errorNotice);
                 }
             }
