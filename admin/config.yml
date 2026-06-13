@@ -7,7 +7,7 @@ public_folder: "/assets/uploads"
 
 collections:
   - name: "microblog"
-    label: "Mis Tweets"
+    label: "Equipos"
     folder: "microblog/posts"
     extension: "json"
     format: "json"
@@ -15,8 +15,7 @@ collections:
     slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
     identifier_field: date
     fields:
-      - { label: "Nombre deñ equipo", name: "title", widget: "string" }
-      - { label: "Fecha (con el boton now se pone automaticamente)", name: "date", widget: "datetime" }
-      - { label: "Resumen sutil o Descripción", name: "description", widget: "string" }
-      - { label: "Aca describis un toque lo que quieras", name: "body", widget: "text" }
-      - { label: "Foto opcional", name: "foto", widget: "image", required: false }
+      - { label: "Nombre del equipo", name: "title", widget: "string" }
+      - { label: "Fecha (con el boton -Now- se pone automaticamente)", name: "date", widget: "datetime" }
+      - { label: "Aca escribis lo que quieras, por ejemplo una descripcion del equipo ingresado", name: "body", widget: "text" }
+      - { label: "Foto opcional, basicamente cualquier imagen", name: "foto", widget: "image", required: false }
