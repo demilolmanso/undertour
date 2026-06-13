@@ -51,39 +51,6 @@
             pointer-events: none;
         }
 
-        header {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            text-align: center;
-            margin-bottom: 20px;
-        }
-
-        .logo-container {
-            width: 100%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 15px 0;
-            z-index: 5;
-        }
-
-        .tournament-logo {
-            width: 5000px;          
-            height: auto;          
-            max-width: 45%;        
-            filter: drop-shadow(0 0 15px var(--celeste)); 
-            animation: glitch-img 4s infinite; 
-        }
-
-        @keyframes glitch-img {
-            0% { transform: translate(0); }
-            1% { transform: translate(-2px, 1px); filter: hue-rotate(180deg); } 
-            2% { transform: translate(2px, -1px); filter: brightness(1.5); }
-            3% { transform: translate(0); filter: none; }
-        }
-
-        /* Botón Volver Estilo Hacker */
         .back-btn-container {
             display: flex;
             justify-content: center;
@@ -183,40 +150,47 @@
             50% { opacity: 0.4; }
         }
 
+        /* Redes Desktop */
         .live-tag {
             position: fixed; bottom: 30px; right: 30px; background: #ff0000;
             color: white; padding: 12px 20px; text-decoration: none;
             font-family: var(--font-heavy); border: 2px solid var(--celeste); z-index: 1000;
             animation: blink 1s infinite;
             text-transform: uppercase;
+            white-space: nowrap;
         }
 
         @keyframes blink { 50% { opacity: 0.7; } }
 
         .insta-tag { bottom: 90px !important; background: #e1306c !important; }
-        .tiktok-tag { bottom: 150px !important; background: #010101 !important; border-color: #00f2fe !important; box-shadow: 2px 2px 0 #fe0979; }
-        .fb-tag { bottom: 210px !important; background: #1877f2 !important; }
-        .wa-tag { bottom: 270px !important; background: #25d366 !important; }
+        .fb-tag { bottom: 150px !important; background: #1877f2 !important; }
+        .wa-tag { bottom: 210px !important; background: #25d366 !important; }
+        .tiktok-tag { bottom: 270px !important; background: #010101 !important; border-color: #00f2fe !important; box-shadow: 2px 2px 0 #fe0979; }
 
         footer { text-align: center; padding: 40px 20px; font-size: 0.6rem; color: #1a2635; letter-spacing: 5px; margin-top: 60px;}
 
+        /* OPTIMIZACIÓN CELULARES */
         @media (max-width: 768px) {
-            .tournament-logo { width: 135px; }
             .blog-header { font-size: 2rem; }
             .post-card { padding: 25px 15px; }
             .back-btn { font-size: 0.8rem; padding: 10px 20px; }
-            .live-tag { bottom: 15px; right: 15px; padding: 8px 15px; font-size: 0.8rem; }
-            .tiktok-tag { bottom: 115px !important; }
-            .fb-tag { bottom: 165px !important; }
-            .wa-tag { bottom: 215px !important; }
+
+            /* Redes en vertical lateral sin recortar nombres */
+            .live-tag {
+                right: 10px !important;
+                padding: 8px 15px;
+                font-size: 0.8rem;
+                border-radius: 4px;
+            }
+            .live-tag:nth-of-type(1) { bottom: 15px !important; }
+            .insta-tag { bottom: 65px !important; }
+            .fb-tag { bottom: 115px !important; }
+            .wa-tag { bottom: 165px !important; }
+            .tiktok-tag { bottom: 215px !important; box-shadow: none; }
         }
     </style>
 </head>
 <body>
-
-    <header>
-    
-    </header>
 
     <div class="back-btn-container">
         <a href="https://undergroundtournament.com/" class="back-btn">< VOLVER_ATRÁS</a>
@@ -224,27 +198,16 @@
 
     <div class="container">
         <h1 class="blog-header">LISTA DE EQUIPOS</h1>
-        
         <div id="blog-posts-container">
             <p id="loading">[CONECTANDO CON EL UNDERSERVER...]</p>
         </div>
     </div>
 
-   <a href="https://www.youtube.com/@UnderTourChannel" target="_blank" class="live-tag">
-        ● UT en Youtube
-    </a>
-    <a href="https://www.instagram.com/undertourhere/" target="_blank" class="live-tag insta-tag">
-        ● UT en Instagram
-    </a>
-    <a href="https://www.facebook.com/share/18yig4K5zS/" target="_blank" class="live-tag fb-tag">
-        ● UT en Facebook
-    </a>
-    <a href="https://w.app/undertour" target="_blank" class="live-tag wa-tag">
-        ● UT en WhatsApp
-    </a>
-    <a href="https://www.tiktok.com/@undergroundtourna?_r=1&_t=ZS-96vxB1xpMZ8" target="_blank" class="live-tag tiktok-tag">
-        ● UT en TikTok
-    </a>
+   <a href="https://www.youtube.com/@UnderTourChannel" target="_blank" class="live-tag">● UT en Youtube</a>
+   <a href="https://www.instagram.com/undertourhere/" target="_blank" class="live-tag insta-tag">● UT en Instagram</a>
+   <a href="https://www.facebook.com/share/18yig4K5zS/" target="_blank" class="live-tag fb-tag">● UT en Facebook</a>
+   <a href="https://w.app/undertour" target="_blank" class="live-tag wa-tag">● UT en WhatsApp</a>
+   <a href="https://www.tiktok.com/@undergroundtourna?_r=1&_t=ZS-96vxB1xpMZ8" target="_blank" class="live-tag tiktok-tag">● UT en TikTok</a>
    
     <footer>UT_MMXIV // CHAPADMALAL // BSAS_ARG</footer>
 
@@ -252,15 +215,13 @@
         const USER = 'demilolmanso';
         const REPO = 'undertour';
         const FOLDER_PATH = 'microblog/posts';
-
         const container = document.getElementById('blog-posts-container');
 
         async function fetchAllPosts() {
             try {
                 const githubApiUrl = `https://api.github.com/repos/${USER}/${REPO}/contents/${FOLDER_PATH}`;
                 const repoResponse = await fetch(githubApiUrl);
-                
-                if (!repoResponse.ok) throw new Error("No se pudo obtener la lista de transmisiones.");
+                if (!repoResponse.ok) throw new Error("No se pudo obtener la lista.");
                 
                 const files = await repoResponse.json();
                 const jsonFiles = files.filter(file => file.name.endsWith('.json'));
@@ -280,17 +241,13 @@
                             const data = await fileResponse.json();
                             loadedPosts.push(data);
                         }
-                    } catch (e) {
-                        console.error("Error al procesar archivo individual:", e);
-                    }
+                    } catch (e) { console.error(e); }
                 }
 
                 loadedPosts.sort((a, b) => new Date(b.date) - new Date(a.date));
-
                 loadedPosts.forEach(data => {
                     const postElement = document.createElement('article');
                     postElement.className = 'post-card';
-                    
                     postElement.innerHTML = `
                         ${data.title ? `<h2>${data.title}</h2>` : ''}
                         <span class="date-tag">FECHA: ${data.date ? new Date(data.date).toLocaleDateString() : 'DESCONOCIDA'}</span>
@@ -298,13 +255,10 @@
                     `;
                     container.appendChild(postElement);
                 });
-
             } catch (error) {
-                console.error("Error global del sistema:", error);
-                container.innerHTML = '<p style="text-align:center; color:#ff3333; font-family: var(--font-code);">[ERROR CRÍTICO: FALLO DE SINCRONIZACIÓN CON EL REPOSITORIO DE LA BRECHA]</p>';
+                container.innerHTML = '<p style="text-align:center; color:#ff3333; font-family: var(--font-code);">[ERROR CRÍTICO: FALLO DE SINCRONIZACIÓN]</p>';
             }
         }
-
         fetchAllPosts();
     </script>
 </body>
