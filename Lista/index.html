@@ -29,98 +29,90 @@
             box-shadow: 4px 4px 0 #82c91e;
         }
         .post-card h2 { color: #82c91e; margin-top: 0; text-transform: uppercase;}
-        .post-card p { line-height: 1.5; color: #e0e0e0; }
-        .post-card a { 
-            color: #fff; 
-            text-decoration: none; 
-            font-weight: bold; 
-            display: inline-block; 
-            margin-top: 10px; 
-            border: 1px solid #82c91e; 
-            padding: 5px 10px;
-            transition: all 0.2s ease;
-        }
-        .post-card a:hover {
-            background: #82c91e;
-            color: #000;
-        }
+        .post-card p { line-height: 1.5; color: #e0e0e0; white-space: pre-wrap; margin-bottom: 0; }
         .date-tag {
             color: #a0a0a0; 
             font-size: 0.8rem;
             display: block;
-            margin-bottom: 8px;
+            margin-bottom: 12px;
         }
+        #loading { text-align: center; color: #82c91e; font-size: 1rem; }
     </style>
 </head>
 <body>
 
     <h1 class="blog-header">NODO_BLOG_INFILTRADO</h1>
-    <div id="blog-posts-container"></div>
+    <div id="blog-posts-container">
+        <p id="loading">[CONECTANDO CON EL NODO CENTRAL...]</p>
+    </div>
 
     <script>
-        // 🛠️ COPIA Y PEGA ACÁ EL NOMBRE EXACTO DEL ARCHIVO NUEVO QUE SE CREÓ EN TU GITHUB
-        // (Búscalo en la carpeta microblog/posts/ y ponelo acá sin el .json)
-        const posts = [
-            '2026-06-11-2026-06-11t11-21-00-000-03-00'
-        ];
+        // CONFIGURACIÓN AUTOMÁTICA DE TU REPOSITORIO
+        const USER = 'demilolmanso';
+        const REPO = 'undertour';
+        const FOLDER_PATH = 'microblog/posts';
 
         const container = document.getElementById('blog-posts-container');
 
-        async function loadPosts() {
-            if (posts.length === 0 || posts[0] === 'pon-aqui-el-nombre-del-archivo-nuevo') {
-                container.innerHTML = '<p style="text-align:center; color:#7012b3;">[SISTEMA] POR FAVOR, INGRESA UN NOMBRE DE ARCHIVO VÁLIDO EN EL SCRIPT...</p>';
-                return;
-            }
-
-            container.innerHTML = ''; // Limpiar contenedor
-
-            for (let slug of posts) {
-                // Forzar minúsculas por si GitHub se pone estricto
-                slug = slug.toLowerCase().trim();
+        async function fetchAllPosts() {
+            try {
+                // Consultamos directamente a GitHub para saber qué archivos existen en la carpeta
+                const githubApiUrl = `https://api.github.com/repos/${USER}/${REPO}/contents/${FOLDER_PATH}`;
+                const repoResponse = await fetch(githubApiUrl);
                 
-                // Intentamos cargar desde la ruta absoluta
-                let urlsToTry = [
-                    `/microblog/posts/${slug}.json`,
-                    `../microblog/posts/${slug}.json`,
-                    `./microblog/posts/${slug}.json`
-                ];
+                if (!repoResponse.ok) throw new Error("No se pudo obtener la lista de transmisiones.");
                 
-                let data = null;
-                let responseOK = false;
+                const files = await repoResponse.json();
+                
+                // Filtramos para asegurarnos de leer únicamente los archivos .json nuevos
+                const jsonFiles = files.filter(file => file.name.endsWith('.json'));
 
-                for (let url of urlsToTry) {
+                if (jsonFiles.length === 0) {
+                    container.innerHTML = '<p style="text-align:center; color:#7012b3;">NO SE ENCONTRARON TRANSMISIONES ACTIVAS...</p>';
+                    return;
+                }
+
+                container.innerHTML = ''; // Limpiamos el mensaje de cargando
+                let loadedPosts = [];
+
+                // Descargamos el contenido interno de cada archivo JSON detectado
+                for (const file of jsonFiles) {
                     try {
-                        const response = await fetch(url);
-                        if (response.ok) {
-                            data = await response.json();
-                            responseOK = true;
-                            break; 
+                        const fileResponse = await fetch(`/${FOLDER_PATH}/${file.name}`);
+                        if (fileResponse.ok) {
+                            const data = await fileResponse.json();
+                            loadedPosts.push(data);
                         }
                     } catch (e) {
-                        // Continuar intentando con la siguiente ruta alternativa
+                        console.error("Error al procesar archivo individual:", e);
                     }
                 }
 
-                if (responseOK && data) {
+                // Ordenamos las publicaciones cronológicamente (las más nuevas primero)
+                loadedPosts.sort((a, b) => new Date(b.date) - new Date(a.date));
+
+                // Renderizamos los componentes visuales en el muro principal
+                loadedPosts.forEach(data => {
                     const postElement = document.createElement('article');
                     postElement.className = 'post-card';
+                    
+                    // Aquí estructuramos el post: Si no tiene título, salta directo al texto de abajo
                     postElement.innerHTML = `
-                        <h2>${data.title || 'TRANSMISIÓN SIN TÍTULO'}</h2>
+                        ${data.title ? `<h2>${data.title}</h2>` : ''}
                         <span class="date-tag">FECHA: ${data.date ? new Date(data.date).toLocaleDateString() : 'DESCONOCIDA'}</span>
-                        <p>${data.description || data.body || 'Sin contenido disponible.'}</p>
-                        <a href="/Lista/post.html?id=${slug}">LEER_TRANSMISION_&gt;</a>
+                        <p>${data.body || data.description || 'Sin contenido.'}</p>
                     `;
                     container.appendChild(postElement);
-                } else {
-                    const errorNotice = document.createElement('p');
-                    errorNotice.style.cssText = "color: #ff3333; text-align: center; font-size: 0.8rem;";
-                    errorNotice.innerHTML = `[ERROR: El archivo <b>${slug}.json</b> no existe en la carpeta microblog/posts/]`;
-                    container.appendChild(errorNotice);
-                }
+                });
+
+            } catch (error) {
+                console.error("Error global del sistema:", error);
+                container.innerHTML = '<p style="text-align:center; color:#ff3333;">[ERROR CRÍTICO: FALLO DE SINCRONIZACIÓN CON EL REPOSITORIO DE LA BRECHA]</p>';
             }
         }
 
-        loadPosts();
+        // Ejecutar la sincronización al cargar la página
+        fetchAllPosts();
     </script>
 </body>
 </html>
