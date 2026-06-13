@@ -56,7 +56,7 @@
             flex-direction: column;
             align-items: center;
             text-align: center;
-            margin-bottom: 30px;
+            margin-bottom: 20px;
         }
 
         .logo-container {
@@ -76,17 +76,42 @@
             animation: glitch-img 4s infinite; 
         }
 
-        @media (max-width: 768px) {
-            .tournament-logo {
-                width: 135px;      
-            }
-        }
-
         @keyframes glitch-img {
             0% { transform: translate(0); }
             1% { transform: translate(-2px, 1px); filter: hue-rotate(180deg); } 
             2% { transform: translate(2px, -1px); filter: brightness(1.5); }
             3% { transform: translate(0); filter: none; }
+        }
+
+        /* Botón Volver Estilo Hacker */
+        .back-btn-container {
+            display: flex;
+            justify-content: center;
+            width: 100%;
+            margin-bottom: 30px;
+            z-index: 10;
+            position: relative;
+        }
+
+        .back-btn {
+            background: transparent;
+            color: var(--celeste);
+            border: 1px solid var(--celeste);
+            padding: 12px 30px;
+            font-family: var(--font-code);
+            font-size: 0.9rem;
+            font-weight: 900;
+            text-decoration: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 4px 4px 0 rgba(116, 172, 223, 0.2);
+            letter-spacing: 2px;
+        }
+
+        .back-btn:hover {
+            background: var(--celeste);
+            color: #000;
+            box-shadow: 4px 4px 0 var(--blanco);
         }
 
         .blog-header { 
@@ -158,7 +183,6 @@
             50% { opacity: 0.4; }
         }
 
-        /* Redes Sociales Flotantes */
         .live-tag {
             position: fixed; bottom: 30px; right: 30px; background: #000000;
             color: white; padding: 12px 20px; text-decoration: none;
@@ -176,8 +200,10 @@
         footer { text-align: center; padding: 40px 20px; font-size: 0.6rem; color: #1a2635; letter-spacing: 5px; margin-top: 60px;}
 
         @media (max-width: 768px) {
+            .tournament-logo { width: 135px; }
             .blog-header { font-size: 2rem; }
             .post-card { padding: 25px 15px; }
+            .back-btn { font-size: 0.8rem; padding: 10px 20px; }
             .live-tag { bottom: 15px; right: 15px; padding: 8px 15px; font-size: 0.8rem; }
             .tiktok-tag { bottom: 115px !important; }
             .fb-tag { bottom: 165px !important; }
@@ -192,8 +218,12 @@
         </div>
     </header>
 
+    <div class="back-btn-container">
+        <a href="https://undergroundtournament.com/" class="back-btn">< VOLVER_ATRÁS</a>
+    </div>
+
     <div class="container">
-        <h1 class="blog-header">EQUIPOS_REGISTRADOS</h1>
+        <h1 class="blog-header">LISTA DE EQUIPOS</h1>
         
         <div id="blog-posts-container">
             <p id="loading">[CONECTANDO CON EL UNDERSERVER...]</p>
