@@ -74,8 +74,8 @@
 
             for (const slug of posts) {
                 try {
-                    // ⚠️ REVISAR ESTA RUTA: Debe ser la carpeta real donde el CMS guarda los JSON
-                    const response = await fetch(`/blog/posts/${slug}.json`);
+                    // ⚠️ REVISAR ESTA RUTA: ${slug}.json
+                    const response = await fetch(`/microblog/posts/${slug}.json`);
                     
                     if (!response.ok) throw new Error(`No se pudo encontrar el archivo: ${slug}.json`);
                     
