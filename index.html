@@ -16,10 +16,6 @@
             background-image: url('fondo.png');
         }
 
-        .insta-tag {
-            bottom: 90px !important; 
-            background: #e1306c !important; 
-        }
         :root {
             --bg: #0a1118;         /* Fondo oscuro azulado profundo */
             --celeste: #74acdf;    /* El celeste oficial de la selección */
@@ -69,14 +65,6 @@
             text-align: center;
         }
 
-        .main-logo {
-            width: 300px; 
-            max-width: 80%;
-            filter: drop-shadow(0 0 15px var(--celeste));
-            z-index: 5;
-            animation: glitch-img 4s infinite;
-        }
-
         .logo-container {
             width: 100%;
             display: flex;
@@ -87,17 +75,11 @@
         }
 
         .tournament-logo {
-            width: 5000px;            
+            width: 100%;            
             height: auto;            
             max-width: 65%;        
             filter: drop-shadow(0 0 15px var(--celeste)); 
             animation: glitch-img 4s infinite; 
-        }
-
-        @media (max-width: 768px) {
-            .tournament-logo {
-                width: 135px;      
-            }
         }
 
         @keyframes glitch-img {
@@ -105,17 +87,6 @@
             1% { transform: translate(-2px, 1px); filter: hue-rotate(180deg); } 
             2% { transform: translate(2px, -1px); filter: brightness(1.5); }
             3% { transform: translate(0); filter: none; }
-        }
-
-        .hacker-number {
-            font-family: var(--font-glitch);
-            font-size: 12rem;
-            line-height: 0.7;
-            color: #0a1118;
-            text-shadow: 3px 3px 0 var(--celeste), -3px -3px 0 var(--blanco);
-            margin: -10px 0 30px 0;
-            transform: rotate(-3deg);
-            z-index: 10;
         }
 
         .countdown-container {
@@ -223,7 +194,6 @@
             30% { transform: translateX(0); }
         }
 
-        /* Contenedor del Botón Lista de Equipos */
         .teams-btn-container {
             grid-column: span 2;
             width: 100%;
@@ -315,50 +285,50 @@
             line-height: 1.4;
         }
 
+        /* Estilos fijos para Botones de Redes (Desktop) */
         .live-tag {
             position: fixed; bottom: 30px; right: 30px; background: #ff0000;
             color: white; padding: 12px 20px; text-decoration: none;
             font-family: var(--font-heavy); border: 2px solid var(--celeste); z-index: 1000;
             animation: blink 1s infinite;
+            white-space: nowrap;
         }
 
         @keyframes blink { 50% { opacity: 0.7; } }
 
+        .insta-tag { bottom: 90px !important; background: #e1306c !important; }
+        .fb-tag { bottom: 150px !important; background: #1877f2 !important; }
+        .wa-tag { bottom: 210px !important; background: #25d366 !important; }
+        .tiktok-tag { bottom: 270px !important; background: #010101 !important; border-color: #00f2fe !important; box-shadow: 2px 2px 0 #fe0979; }
+
         footer { text-align: center; padding: 20px 40px 40px 40px; font-size: 0.6rem; color: #1a2635; letter-spacing: 5px; }
 
+        /* OPTIMIZACIÓN CELULARES */
         @media (max-width: 768px) {
+            .tournament-logo {
+                max-width: 100%; /* El logo toma todo el ancho de la pantalla en celular */
+                padding: 0 5px;
+            }
             .grid-system { grid-template-columns: 1fr; }
             .prize-card, .brecha-form, .location-lock, .teams-btn-container { grid-column: span 1; }
-            .hacker-number { font-size: 7.5rem; }
             .cd-box { min-width: 65px; padding: 10px; }
             .cd-box span { font-size: 2.2rem; }
             .view-teams-btn { font-size: 0.85rem; padding: 15px; }
             .inject-btn { font-size: 1.5rem; }
             .brecha-form { padding: 25px 15px; }
-            .live-tag { bottom: 15px; right: 15px; padding: 8px 15px; font-size: 0.8rem; }
-        }
-        
-        .tiktok-tag {
-            bottom: 150px !important; 
-            background: #010101 !important; 
-            border-color: #00f2fe !important; 
-            box-shadow: 2px 2px 0 #fe0979; 
-        }
 
-        .fb-tag {
-            bottom: 210px !important; 
-            background: #1877f2 !important; 
-        }
-
-        .wa-tag {
-            bottom: 270px !important;
-            background: #25d366 !important;
-        }
-
-        @media (max-width: 768px) {
-            .tiktok-tag { bottom: 115px !important; }
-            .fb-tag { bottom: 165px !important; }
-            .wa-tag { bottom: 215px !important; }
+            /* Redes en vertical lateral sin recortar nombres */
+            .live-tag {
+                right: 10px !important;
+                padding: 8px 15px;
+                font-size: 0.8rem;
+                border-radius: 4px;
+            }
+            .live-tag:nth-of-type(1) { bottom: 15px !important; }
+            .insta-tag { bottom: 65px !important; }
+            .fb-tag { bottom: 115px !important; }
+            .wa-tag { bottom: 165px !important; }
+            .tiktok-tag { bottom: 215px !important; box-shadow: none; }
         }
     </style>
     <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
@@ -370,8 +340,6 @@
         <div class="logo-container">
             <img src="logoUT.png" class="tournament-logo" alt="Logo Underground Tournament">
         </div>
-
-        <img src="chapa.png" class="chapa-img" alt="Chapa">
         
         <div class="countdown-container">
             <div class="cd-box"><span id="days">00</span><label>DÍAS</label></div>
@@ -441,30 +409,20 @@
             </section>
         </div>
     </div>
-    <div class="teams-btn-container">
-                <a href="https://undergroundtournament.com/masinfo/" class="view-teams-btn">[ MÁS INFO ]</a>
-            </div>
+    
+    <div class="teams-btn-container" style="max-width: 900px; margin: 0 auto; padding: 0 20px;">
+        <a href="https://undergroundtournament.com/masinfo/" class="view-teams-btn">[ MÁS INFO ]</a>
+    </div>
 
     <p class="contingency-note">
         WEB POR DEMIÁN CEPEDA.
     </p>
     
-    <a href="https://www.youtube.com/@UnderTourChannel" target="_blank" class="live-tag">
-        ● UT en Youtube
-    </a>
-    <a href="https://www.instagram.com/undertourhere/" target="_blank" class="live-tag insta-tag">
-        ● UT en Instagram
-    </a>
-    <a href="https://www.facebook.com/share/18yig4K5zS/" target="_blank" class="live-tag fb-tag">
-        ● UT en Facebook
-    </a>
-    <a href="https://w.app/undertour" target="_blank" class="live-tag wa-tag">
-        ● UT en WhatsApp
-    </a>
-    <a href="https://www.tiktok.com/@undergroundtourna?_r=1&_t=ZS-96vxB1xpMZ8" target="_blank" class="live-tag tiktok-tag">
-        ● UT en TikTok
-    </a>
-   
+    <a href="https://www.youtube.com/@UnderTourChannel" target="_blank" class="live-tag">● UT en Youtube</a>
+    <a href="https://www.instagram.com/undertourhere/" target="_blank" class="live-tag insta-tag">● UT en Instagram</a>
+    <a href="https://www.facebook.com/share/18yig4K5zS/" target="_blank" class="live-tag fb-tag">● UT en Facebook</a>
+    <a href="https://w.app/undertour" target="_blank" class="live-tag wa-tag">● UT en WhatsApp</a>
+    <a href="https://www.tiktok.com/@undergroundtourna?_r=1&_t=ZS-96vxB1xpMZ8" target="_blank" class="live-tag tiktok-tag">● UT en TikTok</a>
 
     <script>
        const tournamentDate = new Date("July 8, 2026 10:00:00").getTime();
@@ -477,34 +435,6 @@
             document.getElementById("mins").innerHTML = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60)).toString().padStart(2, '0');
             document.getElementById("secs").innerHTML = Math.floor((distance % (1000 * 60)) / 1000).toString().padStart(2, '0');
         }, 1000);
-    </script>
-
-    <script>
-      if ('serviceWorker' in navigator) {
-        window.addEventListener('load', () => {
-          navigator.serviceWorker.register('/sw.js')
-            .then(reg => console.log('App lista para instalar'))
-            .catch(err => console.log('Error de registro', err));
-        });
-      }
-    </script>
-
-    <script>
-      if (window.netlifyIdentity) {
-        window.netlifyIdentity.on("init", user => {
-          if (!user) {
-            window.netlifyIdentity.on("login", () => {
-              document.location.href = "/admin/";
-            });
-          }
-        });
-      }
-
-      if (window.location.hash.includes("invite_token") || 
-          window.location.hash.includes("recovery_token") || 
-          window.location.hash.includes("access_token")) {
-        window.netlifyIdentity.open();
-      }
     </script>
 </body>
 </html>
