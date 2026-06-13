@@ -444,21 +444,34 @@
         }, 1000);
     </script>
 
+    <!-- El script del Service Worker ahora bien posicionado dentro del body -->
+    <script>
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+          navigator.serviceWorker.register('/sw.js')
+            .then(reg => console.log('App lista para instalar'))
+            .catch(err => console.log('Error de registro', err));
+        });
+      }
+    </script>
+
+    <!-- Script de Netlify Identity corregido (Sin duplicaciones) -->
     <script>
       if (window.netlifyIdentity) {
         window.netlifyIdentity.on("init", user => {
           if (!user) {
+            // El evento login SOLO se activa si el usuario no estaba previamente autenticado
             window.netlifyIdentity.on("login", () => {
               document.location.href = "/admin/";
             });
           }
         });
-        window.netlifyIdentity.on("login", () => {
-          document.location.href = "/admin/";
-        });
       }
 
-      if (window.location.hash.includes("invite_token") || window.location.hash.includes("recovery_token") || window.location.hash.includes("access_token")) {
+      // Abre el modal automáticamente si la URL trae un token válido
+      if (window.location.hash.includes("invite_token") || 
+          window.location.hash.includes("recovery_token") || 
+          window.location.hash.includes("access_token")) {
         window.netlifyIdentity.open();
       }
     </script>
